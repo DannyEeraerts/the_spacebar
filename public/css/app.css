@@ -1,0 +1,20 @@
+body{
+  background-color: rgb(34, 39, 51);
+  color: snow;
+  font-size: 0.85rem;
+}
+nav i{
+  color: darkorange;
+}
+h1{
+  text-align: center;
+}
+
+footer, .navbar {
+  width: 100%;
+  background-color: rgba(51,61,81,0.80);
+  color: white;
+}
+footer i{
+  color: red;
+}
