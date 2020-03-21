@@ -5,65 +5,140 @@
 {% endblock %}
 
 {% block body %}
+    <div class="container">
+        <div class="row mt-4 mb-3 d-flex align-items-center">
+            <div class="col-6 col-sm-4">
+                <figure>
+                    <img class="img-fluid show-article-img"
+                         src="{{ asset('images/416_16_psyche_main.jpg') }}">
+                    <figcaption class="ml-1">- asteroid 16 Psyche, -</figcaption>
+                </figure>
 
-<h1 class="m-5">{{ title }}</h1>
+            </div>
+            <div class="col-6 col-sm-8">
+                <h1>{{ title }}</h1>
+                <span class="align-left article-details"><img class="article-author-img rounded-circle"
+                                                              src="{{ asset('images/anakin-skywalker.png') }}"> Mike Ferengi </span>
+                <span class="pl-2 article-details"> 3 hours ago</span>
+                <span class="pl-2 article-details"> <span class="js-like-article-count"> 5</span>
+                    <a href="#" class="ml-1 fa fa-heart-o like-article js-like-article"></a>
+                </span>
+            </div>
 
-<div class="container">
-    <div class="row">
+        </div>
 
-    <p>At the very beginning of our solar system, before there was an Earth, Jupiter or Pluto, a
-        massive
-        swirling cloud of dust and gas circled the young Sun. The dust particles in this disk
-        collided with
-        each other and formed into larger bits of rock. This process continued until they reached
-        the size
-        of boulders. Eventually this process of accretion formed the planets of our solar
-        system.</p>
-    <p>Billions of small space rocks never evolved. Amazingly, many of these mysterious worlds have
-        been
-        altered very little in the 4.6 billion years since they first formed. Their relatively
-        pristine
-        state makes the comets, asteroids and some meteors wonderful storytellers with much to share
-        about
-        what conditions were like in the early solar system. They can reveal secrets about our
-        origins,
-        chronicling the processes and events that led to the birth of our world. They might offer
-        clues
-        about where the water and raw materials that made life possible on Earth came from.</p>
-    <h4>Current Counts:</h4>
-    <ul>
-        <li><strong>Known Asteroids:</strong> 957,526</li>
-        <li><strong>Known Comets:</strong> 3,611</li>
-    </ul>
-    <h4>Robotic Exploration</h4>
-    <p>NASA's robotic spacecraft allow us to visit comets, asteroids, and dwarf planets up close,
-        and even bring back samples to study. We are just beginning to figure out what these places
-        are like, what they are made of, and how they formed.</p>
-    <h4>Raw Materials for Life?</h4>
-    <p>Comets and asteroids probably delivered some of the water and other ingredients that allowed
-        the complex chemistry of life to begin on Earth. The amino acid glycine was discovered in
-        the comet dust returned to Earth by the Stardust mission. Glycine is used by living
-        organisms to make proteins. The discovery supports the theory that some of life's
-        ingredients formed in space and were delivered to Earth long ago by meteorite and comet
-        impacts.</p>
-    <p>Like forensic detectives, scientists follow clues about what happened when the solar system
-        was young to piece together the story of our origins. What we learn will also teach us about
-        systems of planets around other stars, and how life might develop there as well.</p>
+
+        <div class="row">
+            <div class="col-12">
+                <p>At the very beginning of our solar system, before there was an Earth, Jupiter or
+                    Pluto, a
+                    massive
+                    swirling cloud of dust and gas circled the young Sun. The dust particles in this
+                    disk
+                    collided with
+                    each other and formed into larger bits of rock. This process continued until
+                    they reached
+                    the size
+                    of boulders. Eventually this process of accretion formed the planets of our
+                    solar
+                    system.</p>
+                <p>Billions of small space rocks never evolved. Amazingly, many of these mysterious
+                    worlds have
+                    been
+                    altered very little in the 4.6 billion years since they first formed. Their
+                    relatively
+                    pristine
+                    state makes the comets, asteroids and some meteors wonderful storytellers with
+                    much to share
+                    about
+                    what conditions were like in the early solar system. They can reveal secrets
+                    about our
+                    origins,
+                    chronicling the processes and events that led to the birth of our world. They
+                    might offer
+                    clues
+                    about where the water and raw materials that made life possible on Earth came
+                    from.</p>
+                <h4>Current Counts:</h4>
+                <ul>
+                    <li><strong>Known Asteroids:</strong> <span class="color">57 5269</span></li>
+                    <li><strong>Known Comets:</strong> <span class="color">3 611</span></li>
+                </ul>
+                <br/>
+                <h4>Robotic Exploration</h4>
+                <p>NASA's robotic spacecraft allow us to visit comets, asteroids, and dwarf planets
+                    up close,
+                    and even bring back samples to study. We are just beginning to figure out what
+                    these places
+                    are like, what they are made of, and how they formed.</p>
+                <h4>Raw Materials for Life?</h4>
+                <p>Comets and asteroids probably delivered some of the water and other ingredients
+                    that allowed
+                    the complex chemistry of life to begin on Earth. The amino acid glycine was
+                    discovered in
+                    the comet dust returned to Earth by the Stardust mission. Glycine is used by
+                    living
+                    organisms to make proteins. The discovery supports the theory that some of
+                    life's
+                    ingredients formed in space and were delivered to Earth long ago by meteorite
+                    and comet
+                    impacts.</p>
+                <p>Like forensic detectives, scientists follow clues about what happened when the
+                    solar system
+                    was young to piece together the story of our origins. What we learn will also
+                    teach us about
+                    systems of planets around other stars, and how life might develop there as
+                    well.</p>
+            </div>
+            <div class="col-12">
+                <p class="share-icons mb-5"><span class="pr-1">Share:</span>
+                    <i class="pr-1 fa fa-facebook-square"></i><i class="pr-1 fa fa-twitter-square"></i><i
+                            class="pr-1 fa fa-reddit-square"></i><i class="pr-1 fa fa-share-alt-square"></i>
+                </p>
+            </div>
+        </div>
     </div>
-</div>
 
-<div class="container">
-    <div class="row">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3><i class="pr-3 fa fa-comment"></i>Comments ({{ comments|length }})</h3>
+            </div>
+        </div>
 
-    <h3>Comments ({{ comments|length }})</h3>
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <img class="comment-img rounded-circle"
+                     src="{{ asset('images/astronaut-profile.png') }}">
+                <div class="d-inline-block pl-3 align-top">
+                    <span class="commenter-name">Amy Oort</span>
+                    <div class="form-group">
+                        <textarea class="form-control comment-form"
+                                  id="articleText"
+                                  rows="1"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Comment</button>
+                </div>
+            </div>
+        </div>
 
-    <ul>
         {% for comment in comments %}
-            <li>{{ comment }}</li>
+        <div class="row">
+            <div class="col-sm-12">
+                    <img class="comment-img rounded-circle"
+                         src="{{ asset('images/anakin-skywalker.png') }}">
+                    <span class="commenter-name">Mike Ferengi</span>
+                    <br>
+                    {{ comment }}
+                    <p><a href="#">Reply</a></p>
+            </div>
+        </div>
         {% endfor %}
-    </ul>
     </div>
-
-</div>
 
 {% endblock body %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/article_show.js') }}"></script>
+{% endblock %}
