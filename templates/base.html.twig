@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -7,20 +7,42 @@
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Spartan&display=swap">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+            <link rel="stylesheet" href ="{{ asset('css/font-awesome.css') }}">
             <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         {% endblock %}
     </head>
     <body>
     <nav class="navbar navbar-light px-5 py-3">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand pt-1" href="{{ path('app_homepage') }}">
             <i class="fas fa-meteor"></i>
             <p class="pl-2 d-inline font-weight-bold text-light">The Space Bar</p>
         </a>
-        <button class="btn btn-dark">Sign up</button>
+        <a class="nav-link" href="#">Asteroids</a>
+        <a  class="nav-link" href="#">Comets</a>
+        <a  class="nav-link" href="#">Planets</a>
+        <form class="form-inline my-2 my-lg-0 ml-auto">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user-edit ml-3"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Login</a>
+                    <a class="dropdown-item" href="#">Register</a>
+                    <a class="dropdown-item" href="#">Logout</a>
+                </div>
+            </li>
+        </ul>
+        <button class="btn btn-dark">Create Post</button>
     </nav>
+    <main>
         {% block body %}{% endblock %}
+    </main>
         <footer class="mt-5 p-3 text-center">
-            Made with <i class="fa fa-heart"></i> by EDweb&photoStudio
+            Made with <i class="fa fa-heart"></i> by <span class="color">ED</span>web&photoStudio
         </footer>
         {% block javascripts %}
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
