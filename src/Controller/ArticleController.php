@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -37,8 +38,18 @@ class ArticleController extends AbstractController
             meteor rates rise during the shower\'s peak at the end of July.'];
         return $this->render('article/show.html.twig', [
             'title' => ucwords(str_replace('-', ' ', $slug)),
+            'slug'=> $slug,
             'comments' => $comments,
         ]);
+    }
+
+    /**
+     * @Route("/news/{slug}/heart", name="article_show_toggle", methods = {"POST"})
+     */
+
+    public function toggleArticleHeart($slug)
+    {
+        return $this->json(['hearts' => rand(5, 100)]);
     }
 
 }
