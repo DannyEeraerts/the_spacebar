@@ -19,7 +19,6 @@ function toggleClass(){
       if(xhr.status === 200){
         let response = xhr.responseText;
         let object = JSON.parse(response);
-        console.log(object.hearts);
         count.textContent = object.hearts;
       }
     };
