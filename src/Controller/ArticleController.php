@@ -3,7 +3,7 @@
 
 namespace App\Controller;
 
-use Michelf\MarkdownInterface;
+use App\Service\MarkdownHelper;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,7 +21,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/news/{slug}", name="article_show")
      */
-    public function show($slug, MarkdownInterface $markdown)
+    public function show($slug, MarkdownHelper $markdownHelper)
     {
         $comments = [
             'The Lyrids, which peak during late April, are one of the oldest known meteor showers: 
@@ -73,9 +73,9 @@ EOF;
                 well.</p>
 EOF;
 
-
-        $articleIntro = $markdown->transform($articleIntro);
-
+        $articleIntro = $markdownHelper->parse(
+            $articleIntro
+        );
 
         return $this->render('article/show.html.twig', [
             'title' => ucwords(str_replace('-', ' ', $slug)),
