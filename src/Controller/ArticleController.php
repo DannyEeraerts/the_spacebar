@@ -3,7 +3,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use App\Service\MarkdownHelper;
+use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,8 +23,16 @@ class ArticleController extends AbstractController
     /**
      * @Route("/news/{slug}", name="article_show")
      */
-    public function show($slug, MarkdownHelper $markdownHelper)
+    public function show($slug, /*MarkdownHelper $markdownHelper, */EntityManagerInterface $em)
     {
+        $repository = $em->getRepository(Article::class);
+        /** @var Article $article */
+        $article = $repository->findOneBy(['slug' => $slug]);
+        if (!$article)
+        {
+            throw $this->createNotFoundException(sprintf('No article for slug "%s"', $slug));
+        }
+
         $comments = [
             'The Lyrids, which peak during late April, are one of the oldest known meteor showers: 
             Lyrids have been observed for 2,700 years. (The first recorded sighting of a Lyrid meteor 
@@ -37,7 +47,7 @@ class ArticleController extends AbstractController
             view them. If the moon is not present, your best chance to see the Delta Aquariids is when 
             meteor rates rise during the shower\'s peak at the end of July.'];
 
-        $articleIntro = <<<EOF
+        /*$articleIntro = <<<EOF
 At the very beginning of our solar system, **before** there was an Earth, Jupiter or
 Pluto, a massive swirling cloud of dust and gas circled the young Sun. The dust 
 particles in this disk collided with each other and formed into larger bits of rock. 
@@ -75,14 +85,10 @@ EOF;
 
         $articleIntro = $markdownHelper->parse(
             $articleIntro
-        );
+        );*/
 
         return $this->render('article/show.html.twig', [
-            'title' => ucwords(str_replace('-', ' ', $slug)),
-            'articleIntro' => $articleIntro,
-            'articleParagraph1' => $articleParagraph1,
-            'articleParagraph2' => $articleParagraph2,
-            'slug'=> $slug,
+            'article' => $article,
             'comments' => $comments,
         ]);
     }
