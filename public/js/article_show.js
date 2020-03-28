@@ -2,18 +2,20 @@ const heart = document.querySelector(".js-like-article");
 const count = document.querySelector(".js-like-article-count");
 const title = document.querySelector(".title");
 
+
 function toggleClass(){
 
-  console.log("in function");
-
-  console.log(this.classList.contains("fa-heart-o"));
   let result = this.classList.contains("fa-heart-o");
-  console.log(result);
+  console.log(heart.dataset.link);
+  let path = heart.dataset.link;
+  console.log(path);
+  console.log(title);
   if (result) {
     this.classList.remove("fa-heart-o");
     this.classList.add("fa-heart");
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', '/news/'+ title +'/heart', true);
+    console.log(title);
+    xhr.open('POST', '/news/'+ path +'/heart', true);
     xhr.onload=function(){
       console.log(xhr.status);
       if(xhr.status === 200){
@@ -31,3 +33,4 @@ function toggleClass(){
 }
 
 heart.addEventListener("click", toggleClass);
+

@@ -4,20 +4,28 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Repository\ArticleRepository;
 use App\Service\MarkdownHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 class ArticleController extends AbstractController
 {
     /**
      * @Route("/", name="app_homepage")
      */
-    public function homepage()
+    public function homepage(ArticleRepository $repository)
     {
-        return $this->render('article/homepage.html.twig');
+        $articles = $repository->findAllPublishedOrderByNewest();
+
+        return $this->render('article/homepage.html.twig', [
+            'articles' => $articles,
+        ]);
     }
 
     /**
@@ -63,25 +71,6 @@ processes and events that led to *the birth of our world.* They might offer clue
 about where the water and raw materials that made life possible on Earth came
 from.
 EOF;
-        $articleParagraph1 = <<<EOF
-            <h4>Robotic Exploration</h4>
-            <p>NASA's robotic spacecraft allow us *to visit comets, asteroids, and dwarf planets* up 
-            close, and even bring back samples to study. We are **just beginning** to figure out what 
-            these places are like, what they are made of, and how they formed.</p>
-EOF;
-        $articleParagraph2 = <<<EOF
-            <h4>Raw Materials for Life?</h4>
-            <p>Comets and asteroids probably delivered some of the water and other ingredients
-                that allowed the complex chemistry of life to begin on Earth. The amino acid glycine
-                was discovered in the comet dust returned to Earth by the Stardust mission. Glycine
-                is used by living organisms to make proteins. The discovery supports the theory that
-                some of life's ingredients formed in space and were delivered to Earth long ago by
-                meteorite and comet impacts.</p>
-            <p>Like forensic detectives, scientists follow clues about what happened when the
-                solar system was young to piece together the story of our origins. What we learn will also
-                teach us about systems of planets around other stars, and how life might develop there as
-                well.</p>
-EOF;
 
         $articleIntro = $markdownHelper->parse(
             $articleIntro
@@ -97,10 +86,18 @@ EOF;
      * @Route("/news/{slug}/heart", name="article_show_toggle", methods = {"POST"})
      */
 
-    public function toggleArticleHeart($slug, LoggerInterface $logger)
+    /*public function toggleArticleHeart($slug, LoggerInterface $logger)
     {
         $logger->info('Article is being hearted');
         return $this->json(['hearts' => rand(5, 100)]);
+    }*/
+
+    public function toggleArticleHeart(LoggerInterface $logger, Article $article, EntityManagerInterface $em)
+    {
+        $article->incrementHeartCount();
+        $em->flush();
+        $logger->info('Article is being hearted!');
+        return new JsonResponse(['hearts' => $article->getHeartCount()]);
     }
 
 }

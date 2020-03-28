@@ -15,14 +15,14 @@
             <div class="col-sm-12 col-md-7">
 
                 <!-- Article 1 -->
-                <a href="#">
+                <a href="{{ path('article_show',{slug:'The-9-best-meteor-showers-to-watch-in-2020-370'}) }}">
                     <div class="mb-4 pb-3 border">
                         <img class="img-fluid mb-3 border-bottom" src="{{ asset('images/meteors_shower.jpg') }}" alt="meteor shower">
                         <h3 class="text-center mt-2">The <span class="color">9 best meteor showers</span> to watch <br>in 2020</h3>
                     </div>
                 </a>
 
-                <a href="{{ path('article_show',{slug:'astroids-comets-and-planets'}) }}">
+                <a href="{{ path('article_show',{slug:'astroids-comets-and-planets-706'}) }}">
                     <div class="mb-4 pb-3 border">
                         <img class="img-fluid mb-3 border-bottom" src=" {{ asset('images/416_16_psyche_main.jpg') }} " alt="astroid 416">
                         <h3 class="text-center mt-2"><span class="color">Astroids</span>, <span class="color">Comets</span> and <span class="color">Planets</span></h3>
@@ -38,19 +38,24 @@
                         <span class="pl-5 article-details float-right"> 3 hours ago</span>
                     </div>
                 </div>#}
-
+                {% for article in articles %}
                 <div class="my-1 border mb-4">
-                    <img class="article-img" src="{{ asset('images/mercury.jpg') }}" alt ="planet Mercury">
+                    <a href="{{path('article_show', {slug: article.slug})}}"}>
+                    <img class="article-img" src="{{ asset(article.imagePath) }}" alt ="planet Mercury">
                     <div class="article-title d-inline-block pl-3 align-middle">
-                        <a href="#"><span class="color">Life on Planet Mercury: </span><br><span>Mercury's Caloris Basin</span></a>
-                        <div class="mt-2">
-                            <span class="align-left "><img class="article-author-img rounded-circle" src="{{ asset('images/astronaut-profile.png') }}" alt="astronaut Oort"> Amy Oort </span>
-                            <span class="pl-5 article-details"> 6 days ago</span>
+                        <p> <span class="color">{{ article.title }} </span><br><span>Mercury's Caloris Basin</span></p>
+                        <div class="mt-2" style = "color: white">
+                            <span class="align-left "><img class="article-author-img rounded-circle" src="{{ asset('images/astronaut-profile.png') }}" alt="{{article.author}}"> {{article.author}} </span>
+                            <span class="pl-5 article-details text-right"> {{ article.publishedAt ? article.publishedAt | ago  : 'unpublished'}}
+                            on
+                            {{ article.publishedAt ? article.publishedAt | date('D d/m/Y')  : 'unpublished'}}</span>
                         </div>
                     </div>
+                    </a>
                 </div>
+                {% endfor %}
 
-                <div class="my-1 border mb-3">
+                {#<div class="my-1 border mb-3">
                     <a href="#">
                         <img class="article-img" src="{{ asset('images/light-speed.jpg') }}" alt="light speed">
                         <div class="article-title d-inline-block pl-3 align-middle">
@@ -61,7 +66,7 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div>#}
 
             </div>
 
