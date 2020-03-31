@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Component\Intl\Timezones;
 
 class ArticleController extends AbstractController
 {
@@ -21,6 +22,7 @@ class ArticleController extends AbstractController
      */
     public function homepage(ArticleRepository $repository)
     {
+
         $articles = $repository->findAllPublishedOrderByNewest();
 
         return $this->render('article/homepage.html.twig', [
@@ -41,7 +43,7 @@ class ArticleController extends AbstractController
             throw $this->createNotFoundException(sprintf('No article for slug "%s"', $slug));
         }
 
-        $comments = [
+        /*$comments = [
             'The Lyrids, which peak during late April, are one of the oldest known meteor showers: 
             Lyrids have been observed for 2,700 years. (The first recorded sighting of a Lyrid meteor 
             shower goes back to 687 BC by the Chinese.)',
@@ -53,7 +55,7 @@ class ArticleController extends AbstractController
             'The Delta Aquariids are active beginning in mid-July and are visible until late-August. 
             These faint meteors are difficult to spot, and if there is a moon you will not be able to 
             view them. If the moon is not present, your best chance to see the Delta Aquariids is when 
-            meteor rates rise during the shower\'s peak at the end of July.'];
+            meteor rates rise during the shower\'s peak at the end of July.'];*/
 
         /*$articleIntro = <<<EOF
 At the very beginning of our solar system, **before** there was an Earth, Jupiter or
@@ -78,7 +80,7 @@ EOF;
 
         return $this->render('article/show.html.twig', [
             'article' => $article,
-            'comments' => $comments,
+           /* 'comments' => $comments,*/
         ]);
     }
 

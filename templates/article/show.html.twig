@@ -59,7 +59,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h3><i class="pr-3 fa fa-comment"></i>Comments ({{ comments|length }})</h3>
+                <h3><i class="pr-3 fa fa-comment"></i>Comments ({{ article.comments|length }})</h3>
             </div>
         </div>
 
@@ -79,14 +79,15 @@
             </div>
         </div>
 
-        {% for comment in comments %}
+        {% for comment in article.comments %}
         <div class="row">
             <div class="col-sm-12">
                     <img class="comment-img rounded-circle"
                          src="{{ asset('images/anakin-skywalker.png') }}">
-                    <span class="commenter-name">Mike Ferengi</span>
+                    <span class="commenter-name">{{ comment.authorName }}</span>
+                    <small>{{ comment.createdAt|ago }}</small>
                     <br>
-                    {{ comment }}
+                    {{ comment.content }}
                     <p><a href="#">Reply</a></p>
             </div>
         </div>
