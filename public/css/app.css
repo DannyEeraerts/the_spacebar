@@ -1,4 +1,7 @@
 body{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
   background: url('../images/bleu_body.jpg');
   background-color: rgb(5, 5, 18);
   background-position-x: center;
@@ -12,6 +15,10 @@ body{
   color: snow;
   font-size: 0.85rem;
 }
+main {
+  flex: 1;
+}
+
 a, a:hover {
   text-decoration: none;
 }
@@ -20,6 +27,9 @@ a, a:hover {
 }
 nav i, nav a, footer i, h3{
   color: darkorange;
+}
+.bg-warning{
+  background-color: darkorange!important;
 }
 input.form-control{
   display: block;
@@ -108,6 +118,8 @@ figcaption{
   min-width: 500px;
 }
 
+
+
 figcaption {
   position: absolute;
   bottom: 1.5rem;
@@ -164,6 +176,26 @@ table.table-bordered > thead > tr > th{
 .table-dark td {
   border-color: rgba(200, 200, 200, 0.75);
 }
+
+/* comment manager page */
+.underline_magic {
+  background-image: linear-gradient(120deg, rgba(0,0,255,0.33) 10%, darkorange  100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.05em;
+  background-position: 0 100%;
+  transition: background-size 0.25s ease-in;
+}
+.underline_magic:hover {
+   background-size: 100% 90%;
+ }
+.no-space {
+  padding-right: 2px;
+  padding-left: 2px;
+}
+.btn-outline-secondary{
+  color: whitesmoke;
+}
+
 
 
 

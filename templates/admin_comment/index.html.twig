@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Manage Comments!{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-12 no-space text-center">
+            <h4>You have full control over which comments appear on this site</h4>
+            <h1 class="underline_magic p-3 mb-4">Manage Comments</h1>
+            <form>
+                <div class="input-group mb-3">
+                    <input type="text"
+                           name="q"
+                           class="form-control"
+                           value=" {{ app.request.query.get('q') }}"
+                           placeholder="Search..."
+                    >
+                    <div class="input-group-append">
+                        <button type="submit"
+                                class="btn btn-outline-secondary">
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <table class="table table-bordered table-dark table-striped">
+            <thead>
+            <tr>
+                <th class="text-center" scope="col">Title</th>
+                <th class="text-center" scope="col">Author</th>
+                <th class="text-center" scope="col">Content</th>
+                <th class="text-center" scope="col">Created</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for comment in comments %}
+                <tr>
+                    <td class="col-2 text-left pr-5">
+                        <a href= "{{ path('article_show', {slug: comment.article.slug}) }}"> {{ comment.article.title }} </a>
+                     </td>
+                    <td class="col-2 text-left pr-5">{{ comment.authorName }}</td>
+                    <td class="col-6 text-left pr-5">{{ comment.content|slice(0,150) }} ...</td>
+                    <td class="col-6 text-center">{{ comment.createdAt|ago }}</td>
+                </tr>
+                    {#if there are no results#}
+                {% else %}
+                    <tr>
+                        <td colspan="12" class="text-center">no comments found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
