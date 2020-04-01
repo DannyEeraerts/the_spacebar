@@ -25,7 +25,7 @@ a, a:hover {
 .navbar-brand{
   line-height: 2rem;
 }
-nav i, nav a, footer i, h3{
+nav i, nav a, footer i, h3, .page-link{
   color: darkorange;
 }
 .bg-warning{
@@ -195,7 +195,16 @@ table.table-bordered > thead > tr > th{
 .btn-outline-secondary{
   color: whitesmoke;
 }
-
+.page-item.active .page-link {
+  background-color: darkorange;
+  border-color: darkorange;
+}
+main ul li::before {
+  display: none;
+}
+ul .pagination{
+  border-radius: unset;
+}
 
 
 

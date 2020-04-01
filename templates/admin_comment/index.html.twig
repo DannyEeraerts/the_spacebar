@@ -8,9 +8,9 @@
     <div class="row mt-4">
         <div class="col-12 no-space text-center">
             <h4>You have full control over which comments appear on this site</h4>
-            <h1 class="underline_magic p-3 mb-4">Manage Comments</h1>
+            <h1 class="underline_magic p-3 mb-4">Manage Comments ({{ pagination.totalItemCount }})</h1>
             <form>
-                <div class="input-group mb-3">
+                <div class="input-group mb-4">
                     <input type="text"
                            name="q"
                            class="form-control"
@@ -36,7 +36,7 @@
             </tr>
             </thead>
             <tbody>
-                {% for comment in comments %}
+                {% for comment in pagination %}
                 <tr>
                     <td class="col-2 text-left pr-5">
                         <a href= "{{ path('article_show', {slug: comment.article.slug}) }}"> {{ comment.article.title }} </a>
@@ -53,6 +53,9 @@
                 {% endfor %}
             </tbody>
         </table>
+    </div>
+    <div class="d-flex justify-content-center">
+        {{ knp_pagination_render(pagination) }}
     </div>
 </div>
 
