@@ -7,7 +7,7 @@
 {% block body %}
     <div class="container">
         <div class="row mt-4 mb-3 d-flex align-items-center">
-            <div class="col-6 col-sm-4">
+            <div class="col-6 col-sm-5">
                 <figure>
                     <img class="img-fluid show-article-img"
                          src="{{ asset(article.imagePath) }}">
@@ -15,8 +15,8 @@
                 </figure>
 
             </div>
-            <div class="col-6 col-sm-8">
-                <h1 class="title">{{ article.title }}</h1>
+            <div class="col-6 col-sm-7 text-center">
+                <h1 class="title mb-4">{{ article.title }}</h1>
                 <span class="align-left article-details"><img class="article-author-img rounded-circle"
                     src="{{ asset('images/anakin-skywalker.png') }}"> {{ article.author }}
                 </span>
@@ -28,6 +28,14 @@
                 <span class="pl-2 article-details"> <span class="js-like-article-count"> {{ article.heartCount }}</span>
                     <a href="#" class="ml-1 fa fa-heart-o like-article js-like-article" data-link = {{ article.slug }}></a>
                 </span>
+                <p class="article-details mt-2">
+                    tags:&nbsp
+                    {% for tag in article.tags %}
+                        <span class="badge badge-secondary">
+                            {{ tag.name }}
+                        </span>
+                    {% endfor %}
+                </p>
             </div>
 
         </div>

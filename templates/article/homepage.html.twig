@@ -49,6 +49,14 @@
                             <span class="pl-5 article-details text-right"> {{ article.publishedAt ? article.publishedAt | ago  : 'unpublished'}}
                             on
                             {{ article.publishedAt ? article.publishedAt | date('D d/m/Y')  : 'unpublished'}}</span>
+                            <p class="article-details mt-1">
+                                tags:&nbsp
+                                {% for tag in article.tags %}
+                                    <span class="badge badge-secondary">
+                                        {{ tag.name }}
+                                    </span>
+                                {% endfor %}
+                            </p>
                         </div>
                     </div>
                     </a>

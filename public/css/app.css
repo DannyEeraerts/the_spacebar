@@ -28,7 +28,7 @@ a, a:hover {
 nav i, nav a, footer i, h3, .page-link{
   color: darkorange;
 }
-.bg-warning{
+.bg-warning, .badge-secondary{
   background-color: darkorange!important;
 }
 input.form-control{
@@ -199,6 +199,7 @@ table.table-bordered > thead > tr > th{
   background-color: darkorange;
   border-color: darkorange;
 }
+
 main ul li::before {
   display: none;
 }
