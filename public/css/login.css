@@ -1,0 +1,9 @@
+input.form-control{
+  border: 1px solid darkorange;
+  border-radius: 0;
+  color: whitesmoke;
+  font-size: 0.85rem;
+}
+nav form input.form-control:hover{
+  border: 1px solid blue;
+}

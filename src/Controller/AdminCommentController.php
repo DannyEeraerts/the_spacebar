@@ -23,7 +23,7 @@ class AdminCommentController extends AbstractController
             $querybuilder, /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
             6); /*limit per page*/
-        return $this->render('admin_comment/index.html.twig', [
+        return $this->render('admin_comment/adminComment.html.twig', [
             /*'comments' => $comments,*/
             'pagination' => $pagination,
         ]);
