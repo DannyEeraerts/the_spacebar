@@ -25,11 +25,29 @@ a, a:hover {
 .navbar-brand{
   line-height: 2rem;
 }
-nav i, nav a, footer i, h3, .page-link{
+nav i, nav a, footer i, h3, .page-link, .dropdown-item{
   color: darkorange;
+}
+.dropdown-item:hover{
+  color: blue;
+}
+.btn-dark.dropdown-toggle{
+  color: darkorange!important;
+}
+.show > .btn-dark.dropdown-toggle{
+  border-color: darkorange!important;
 }
 .bg-warning, .badge-secondary{
   background-color: darkorange!important;
+}
+.dropdown-menu{
+  border-radius: unset;
+  left: -2.5rem;
+  min-width: 5rem;
+  border: 1px solid darkblue;
+}
+.btn-border{
+  border-left: none!important;
 }
 nav form input.form-control{
   display: block;

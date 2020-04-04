@@ -1,9 +1,22 @@
 input.form-control{
   border: 1px solid darkorange;
   border-radius: 0;
-  color: whitesmoke;
+  background-color: whitesmoke;
+  color: #0a0a0a;
   font-size: 0.85rem;
 }
 nav form input.form-control:hover{
   border: 1px solid blue;
+}
+.alert-danger{
+  background: red;
+  color: whitesmoke;
+}
+.alert{
+  border-radius: unset;
+  padding: 0.5rem 0.85rem;
+}
+.position{
+  margin-top: 10rem;
+  background-color: rgb(219, 120, 0);
 }

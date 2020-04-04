@@ -7,9 +7,17 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserAdminController
 {
+    private $passwordEncoder;
+
+    public function __construct (UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     /**
      * @Route("admin/user/new")
      */
@@ -19,6 +27,9 @@ class UserAdminController
         $user->setEmail("info@jeugdverblijfdikkele.be");
         $user->setFirstName("Erwin");
         $user->setLastName("Eeraerts");
+        $user->setPassword($this->passwordEncoder->encodePassword(
+            $user, '1234Erwin'
+        ));
         $em->persist($user);
         $em->flush();
 
