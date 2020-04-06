@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,6 +21,7 @@ class UpdatePasswordController extends AbstractController
 
     /**
      * @Route("update/password")
+     * @IsGranted("ROLE_ADMIN")
      */
 
     public function update(EntityManagerInterface $em)

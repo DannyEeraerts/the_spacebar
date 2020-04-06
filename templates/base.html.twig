@@ -43,11 +43,26 @@
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{{ path('app_login') }}">Login</a>
-                <a class="dropdown-item" href="#">Register</a>
-                <a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a>
+                {% if (is_granted('ROLE_USER')) %}
+                    <a class="dropdown-item" href="#">Register</a>
+                    <a class="dropdown-item" href="{{ path('app_account') }}">Manage account</a>
+                    <a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a>
+                {% else %}
+                    <a class="dropdown-item" href="{{ path('app_login') }}">Login</a>
+                {% endif %}
             </div>
         </div>
+        {% if (is_granted('ROLE_USER')) %}
+        <div class="btn-group ml-2">
+            <button type="button" class="btn btn-dark "><i class="fas fa-tools"></i></button>
+            <button type="button" class="btn btn-dark btn-border dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{ path('admin_comment')}}">New Article</a>
+            </div>
+        </div>
+        {% endif %}
     </nav>
     <main>
         {% block body %}{% endblock %}
