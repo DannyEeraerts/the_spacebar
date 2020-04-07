@@ -1,9 +1,24 @@
 input.form-control{
   border: 1px solid darkorange;
+  border-right: none;
   border-radius: 0;
   background-color: whitesmoke;
   color: #0a0a0a;
   font-size: 0.85rem;
+}
+.input-group-append{
+  background-color: whitesmoke;
+  border: 1px solid darkorange;
+  border-left: none;
+  color: darkorange;
+  line-height: 1.5;
+}
+.border-none, .border-none:hover{
+  border: none;
+}
+.btn-light:hover {
+  color: blue;
+  background-color: whitesmoke;
 }
 nav form input.form-control:hover{
   border: 1px solid blue;
@@ -17,6 +32,6 @@ nav form input.form-control:hover{
   padding: 0.5rem 0.85rem;
 }
 .position{
-  margin-top: 10rem;
+  margin-top: 8rem;
   background-color: rgb(219, 120, 0);
 }

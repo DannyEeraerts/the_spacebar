@@ -42,12 +42,9 @@ nav i, nav a, footer i, h3, .page-link, .dropdown-item{
 }
 .dropdown-menu{
   border-radius: unset;
-  left: -2.5rem;
+  left: -4.25rem;
   min-width: 5rem;
   border: 1px solid darkblue;
-}
-.btn-border{
-  border-left: none!important;
 }
 nav form input.form-control{
   display: block;
