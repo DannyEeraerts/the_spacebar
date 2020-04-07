@@ -10,11 +10,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class ArticleAdminController extends AbstractController
 {
     /**
      * @Route("admin/article/new")
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_ADMIN_ARTICLE")
      */
     public function new(EntityManagerInterface $em)
     {
@@ -156,7 +157,8 @@ EOF);
             if (rand(1, 10) > 2){
                 $article->setPublishedAt(new \DateTime(sprintf('%d days', rand(1, 100))));
             }
-            $article->setAuthor('David Doody')
+            $author = $this->getUser()->getId();
+            $article->setAuthor($author)
                 ->setHeartCount(rand(5,100))
                 ->setImageFileName('mishra_960.jpg');
 
@@ -167,5 +169,20 @@ EOF);
         $article->getId(),
         $article->getSlug()
         ));
+    }
+
+    /**
+     * @Route("/admin/article/{id}/edit")
+     */
+
+    public function edit(Article $article)
+    {
+        if (!$this->isGranted('MANAGE', $article)) {
+            throw $this->createAccessDeniedException('You have no access, to edit this article!');
+        }
+
+        dd($article);
+
+
     }
 }
