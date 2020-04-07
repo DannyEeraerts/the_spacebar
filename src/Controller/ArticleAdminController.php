@@ -14,12 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleAdminController extends AbstractController
 {
     /**
-     * @Route("admin/article/new")
+     * @Route("admin/article/new", name="admin_article_new")
      * @IsGranted("ROLE_ADMIN_ARTICLE")
      */
     public function new(EntityManagerInterface $em)
     {
-        $article = new Article();
+        /*$article = new Article();
         $article->setTitle("Knowledge of the Solar System")
             ->setSlug('Knowledge of the Solar System-'.rand(100,999))
             ->setContent(<<<EOF
@@ -163,26 +163,23 @@ EOF);
                 ->setImageFileName('mishra_960.jpg');
 
             $em->persist($article);
-            $em->flush();
+            $em->flush();*/
 
-        return new Response(sprintf('Hiya! New article id: #%d slug: %s',
-        $article->getId(),
-        $article->getSlug()
+
+
+        return new Response(sprintf(
+            'Hiya! New article id: #%d slug: %s',
+            $article->getId(),
+            $article->getSlug()
         ));
     }
 
     /**
      * @Route("/admin/article/{id}/edit")
+     * @IsGranted("MANAGE", subject="article")
      */
-
     public function edit(Article $article)
     {
-        if (!$this->isGranted('MANAGE', $article)) {
-            throw $this->createAccessDeniedException('You have no access, to edit this article!');
-        }
-
         dd($article);
-
-
     }
 }

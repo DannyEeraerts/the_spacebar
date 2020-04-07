@@ -227,12 +227,16 @@ class Article
         return $this->author;
     }
 
+    public function getAuthorOfArticle(): string
+    {
+        return $this->author;
+    }
+
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
 
         return $this;
     }
-
 
 }
