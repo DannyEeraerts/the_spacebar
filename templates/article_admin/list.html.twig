@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="row underline_magic pt-4 pb-3 my-4 d-flex align-items-center">
+        <div class="col-9 no-space text-center">
+            <h1 class=" text-center mb-0">All Articles</h1>
+        </div>
+        <div class="col-3 no-space d-flex justify-content-center">
+            <a href="{{ path('admin_article_new') }}" class="btn btn-primary pull-right">
+                Create new <span class="fa fa-plus-circle"></span>
+            </a>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12 no-space text-center">
+            <table class="table table-bordered table-dark table-striped">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Published?</th>
+                    <th>$nbsp</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for article in articles %}
+                    <tr>
+                        <td>
+                            <a href= "{{ path('article_show', {slug: article.slug}) }}">{{ article.title }}</a>
+                        </td>
+                        <td>{{ article.author.email }}</td>
+                        <td>
+                            <span class="fa fa-{{ article.publishedAt ? 'check' : 'times' }}"></span>
+                        </td>
+                        <td>
+                            <a href="{{ path('admin_article_edit',
+                            { id: article.id })
+                            }}
+                            "><span class="fa fa-pencil text-light"></span></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+

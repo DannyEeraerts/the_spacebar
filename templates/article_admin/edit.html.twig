@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add New Article{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href ="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href ="{{ asset('css/form.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row d-flex justify-content-center mt-4 ">
+            <div class="col-10 col-lg-8 px-0">
+                <h1 class="underline_magic p-3 mb-2 text-center">Edit your article</h1>
+            </div>
+        </div>
+        {{ include('article_admin/_form.html.twig',
+            {button_text: 'update'})
+        }}
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/hide_error_message.js') }}"></script>
+{% endblock %}

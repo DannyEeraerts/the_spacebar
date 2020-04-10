@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
@@ -25,6 +27,7 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Get creative and think of a title!  ❌")
      */
     private $title;
 
@@ -35,11 +38,13 @@ class Article
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     *  @Assert\NotBlank(message="Content can not be blanc!  ❌")
      */
     private $content;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Assert\NotBlank(message="Please fill in publish date!  ❌")
      */
     private $publishedAt;
 
@@ -74,6 +79,11 @@ class Article
     {
         $this->comments = new ArrayCollection();
         $this->tags = new ArrayCollection();
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getTitle(): ?string
@@ -237,6 +247,22 @@ class Article
         $this->author = $author;
 
         return $this;
+    }
+
+    /**
+     * @Assert\Callback
+     */
+    public function validate(ExecutionContextInterface $context, $payload)
+    {
+        if ((strpos($this->getImageFileName(), 'png') == false)
+            && (strpos($this->getImageFileName(), 'jpg') == false)
+            && (strpos($this->getImageFileName(), 'jpeg') == false)
+        )
+        {
+            $context->buildViolation('The image file must be of format .jpg or .png or .jpeg ❌')
+                ->atPath('imageFileName')
+                ->addViolation();
+        }
     }
 
 }

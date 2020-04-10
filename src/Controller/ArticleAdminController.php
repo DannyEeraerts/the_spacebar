@@ -4,9 +4,12 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Form\ArticleFormType;
+use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -16,8 +19,9 @@ class ArticleAdminController extends AbstractController
     /**
      * @Route("admin/article/new", name="admin_article_new")
      * @IsGranted("ROLE_ADMIN_ARTICLE")
+     * @throws \Exception
      */
-    public function new(EntityManagerInterface $em)
+    public function new(EntityManagerInterface $em, Request $request)
     {
         /*$article = new Article();
         $article->setTitle("Knowledge of the Solar System")
@@ -165,21 +169,75 @@ EOF);
             $em->persist($article);
             $em->flush();*/
 
+        $form = $this->createForm(ArticleFormType::class);
 
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+           //$data = $form->getData();
+           $article = new Article;
+           $article = $form->getData();
+           //$article->setTitle($data->getTitle());
+           $slug = str_replace(' ','-', $form->getData()->getTitle()).'-'.rand(100,999);
+           $article->setSlug($slug);
+           //$article->setContent($data->getContent());
+           $article->setAuthor($this->getUser());
+           //$date = new \DateTime('@'.strtotime('now'));
+           //$article->setPublishedAt($date);
+           //$article->setImageFileName($data->getImageFileName());
 
-        return new Response(sprintf(
+           $em->persist($article);
+           $em->flush();
+
+           $this->addFlash('success', 'Article created and written to database');
+
+           return $this->redirectToRoute('admin_article_list');
+        }
+
+        return $this->render('article_admin/new.html.twig',[
+            'articleForm' => $form->createView(),
+        ]);
+
+        /*return new Response(sprintf(
             'Hiya! New article id: #%d slug: %s',
             $article->getId(),
             $article->getSlug()
-        ));
+        ));*/
     }
 
     /**
-     * @Route("/admin/article/{id}/edit")
+     * @Route("/admin/article/{id}/edit", name="admin_article_edit")
      * @IsGranted("MANAGE", subject="article")
      */
-    public function edit(Article $article)
+    public function edit(Article $article, Request $request, EntityManagerInterface $em)
     {
-        dd($article);
+        $form = $this->createForm(ArticleFormType::class, $article);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $slug = str_replace(' ','-', $form->getData()->getTitle()).'-'.rand(100,999);
+            $article->setSlug($slug);
+
+            $em->persist($article);
+            $em->flush();
+
+            $this->addFlash('success', 'Article updated and written to database');
+
+            return $this->redirectToRoute('admin_article_edit', ['id' => $article->getId()]);
+        }
+
+        return $this->render('article_admin/edit.html.twig',[
+            'articleForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/article", name="admin_article_list")
+     */
+    public function list(ArticleRepository $articleRepo)
+    {
+        $articles = $articleRepo->findAll();
+        return $this->render('article_admin/list.html.twig', [
+            'articles' => $articles,
+        ]);
     }
 }

@@ -1,0 +1,25 @@
+<div class="row d-flex justify-content-center mt-4 ">
+    <div class="col-10 col-lg-8 px-0">
+        {{ form_start(articleForm) }}
+        <div class="form-group">
+            {{ form_label(articleForm.title) }}
+            {{ form_widget(articleForm.title) }}
+        </div>
+        <div class="mb-2">
+            {{ form_label(articleForm.content) }}
+            {{ form_widget(articleForm.content) }}
+        </div>
+
+        <div class="mb-2">
+            {{ form_label(articleForm.publishedAt) }}
+            {{ form_widget(articleForm.publishedAt) }}
+        </div>
+        <div class="mb-4">
+            {{ form_label(articleForm.imageFileName) }}
+            {{ form_widget(articleForm.imageFileName) }}
+        </div>
+
+        <button type="submit" class="btn btn-lg btn-dark btn-block mt-2" formnovalidate>{{ button_text}}</button>
+        {{ form_end(articleForm) }}
+    </div>
+</div>

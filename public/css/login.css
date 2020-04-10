@@ -1,20 +1,21 @@
 input.form-control{
-  border: 1px solid darkorange;
+  border: 1.5px solid #23272b;
+  border-bottom: none;
   border-right: none;
-  border-radius: 0;
+  border-radius: 0.15rem;
   background-color: whitesmoke;
   color: #0a0a0a;
   font-size: 0.85rem;
 }
 .input-group-append{
   background-color: whitesmoke;
-  border: 1px solid darkorange;
-  border-left: none;
+  border-top: 1.5px solid #23272b;
   color: darkorange;
   line-height: 1.5;
 }
 .border-none, .border-none:hover{
   border: none;
+  background-image: none;
 }
 .btn-light:hover {
   color: blue;
@@ -30,6 +31,10 @@ nav form input.form-control:hover{
 .alert{
   border-radius: unset;
   padding: 0.5rem 0.85rem;
+}
+.alert-success{
+  background-color: #3296b4;
+  color: whitesmoke;
 }
 .position{
   margin-top: 8rem;

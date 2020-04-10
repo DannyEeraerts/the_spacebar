@@ -35,7 +35,7 @@ nav i, nav a, footer i, h3, .page-link, .dropdown-item{
   color: darkorange!important;
 }
 .show > .btn-dark.dropdown-toggle{
-  border-color: darkorange!important;
+  color: dodgerblue!important;
 }
 .bg-warning, .badge-secondary{
   background-color: darkorange!important;
@@ -57,22 +57,32 @@ nav form input.form-control{
   color: #495057;
   background-color: whitesmoke;
   background-clip: padding-box;
-  border: 1px solid darkorange;
-  border-radius: 0;
+  border: 2px solid black;
+  border-bottom: 1.5px solid darkorange;
+  border-right: 1.5px solid darkorange;
+  border-radius: 0.1rem;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.39), 0 -1px 1px #FFF, 0 1px 0 #FFF;
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 nav form input.form-control:hover{
-  border: 1px solid blue;
+  border-bottom: 1px solid blue;
+  border-right: 1px solid blue;
 }
 .form-inline, nav button, .btn {
   font-size: 0.85rem !important;
   border-radius: 0;
 }
 nav button, .btn{
-  border: 1px solid darkorange;
+  border-top: 1px solid darkorange;
+  border-left: 3.5px solid rgba(200, 200, 200, 0.85) ;
+  border-bottom: 3px solid black;
+  border-right: 3px solid black;
+  background-image: linear-gradient(rgba(175, 175, 175, 1) 5%, #343a40 20%, rgba(26, 27, 32, 1) 98%);
+  border-radius: 0.15rem;
 }
 nav button:hover, .btn:hover{
-  border: 1px solid blue;
+  border-top: 1px solid blue;
+  border-left: 3.5px solid rgba(200, 200, 200, 0.85) ;
 }
 h4{
   color: #656f87;
@@ -221,11 +231,14 @@ main ul li::before {
 ul .pagination{
   border-radius: unset;
 }
-input.form-control{
+input.form-control, textarea.form-control{
   border: 1px solid darkorange;
   border-radius: 0;
   color: whitesmoke;
   font-size: 0.85rem;
+}
+textarea.form-control{
+  height: 5rem;
 }
 nav form input.form-control:hover{
   border: 1px solid blue;

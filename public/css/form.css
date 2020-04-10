@@ -1,0 +1,43 @@
+main form{
+  padding: 3rem;
+  background-color: rgb(219, 120, 0);;
+}
+textarea.form-control{
+  border: 1.5px solid #23272b;
+  border-bottom: none;
+  border-right: none;
+  border-radius: 0;
+  background-color: whitesmoke;
+  color: #0a0a0a;
+  font-size: 0.85rem;
+}
+label{
+  display: flex;
+  margin-bottom: 0.15rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.invalid-feedback{
+  background-color: whitesmoke;
+  border: 1px solid #0a0a0a;
+  width: auto;
+  padding-bottom: 0.15rem;
+  padding-top: 0.15rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.badge{
+  border-radius: unset;
+}
+.d-block {
+  display: flex;
+  align-items: center;
+  padding-top:0.1rem;
+  padding-bottom: 0.15rem;
+}
+form input, textarea {
+  border: 2px solid black;
+  border-bottom: 1.5px solid darkorange;
+  border-right: 1.5px solid darkorange;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.75), 0 -1px 1px #FFF, 0 1px 0 #FFF;
+}
