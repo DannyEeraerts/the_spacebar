@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserRegistrationFormType;
 use App\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,9 +45,13 @@ class SecurityController extends AbstractController
      * */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator){
 
-        if($request->isMethod('POST'))
+        $form = $this->createForm(UserRegistrationFormType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
         {
-            $user = new User;
+            /** @var User $user*/
+            $user = $form->getData();
             $user->setFirstName($request->request->get('firstName'));
             $user->setLastName($request->request->get('lastName'));
             $user->setEmail($request->request->get('email'));
