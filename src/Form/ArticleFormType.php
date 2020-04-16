@@ -3,8 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Article;
-use Doctrine\DBAL\Types\DateTimeType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,19 +22,18 @@ class ArticleFormType extends AbstractType
             ->add('content', null, [
                 'label' => 'Content *',
                 'attr' => [
-                    'placeholder' => 'Content of new article'
+                    'placeholder' => 'Content of new article',
+                    'rows' => 6
                 ]
             ])
-            ->add('publishedAt', null, [
+            ->add('publishedAt', DateTimeType::class, [
                 'widget' => 'single_text',
-                /*'html5' => false,
+                'html5' => false,
                 'attr' => [
-                    'placeholder' => date('d/m/y H:i:s'),
-                ],
+                    'class' => 'datetimepicker',
+                    'placeholder' => 'Select a date and time'],
                 'format' => 'd/m/Y H:i:s',
                 'date_format' => 'd/m/Y H:i:s',
-                'translation_domain' => 'Default',
-                'required' => false,*/
             ])
             ->add('imageFileName', null,[
                 'attr'=> [
@@ -48,6 +47,7 @@ class ArticleFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Article::class,
+            /*'attr' => ['id' => 'datetimepicker']*/
         ]);
     }
 }

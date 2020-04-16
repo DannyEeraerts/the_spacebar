@@ -5,10 +5,16 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="This email-adress is already registrated!"
+ * )
  */
 class User implements UserInterface
 {
@@ -21,6 +27,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank(message="Please enter an email  ❌")
+     * @Assert\Email()
      */
     private $email;
 
@@ -31,11 +39,15 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=60)
+     * @Assert\NotBlank(message="Please enter your firstname  ❌")
+     * @Assert\Length(min=2, minMessage="A firstname is longer than one character ❌")
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=60)
+     * @Assert\NotBlank(message="Please enter your lastname  ❌")
+     * @Assert\Length(min=2, minMessage="A firstname is longer than one character ❌")
      */
     private $lastName;
 
@@ -48,6 +60,12 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="author")
      */
     private $articles;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $agreedTermsAt;
+
 
     public function __construct()
     {
@@ -191,4 +209,17 @@ class User implements UserInterface
     {
         return $this->getFirstName().' '.$this->getLastName();
     }
+
+    public function getAgreedTermsAt(): ?\DateTimeInterface
+    {
+        return $this->agreedTermsAt;
+    }
+
+    public function agreeTerms(): self
+    {
+        $this->agreedTermsAt = new \DateTime();
+
+        return $this;
+    }
+
 }

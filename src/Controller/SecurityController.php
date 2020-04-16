@@ -6,8 +6,11 @@ use App\Entity\User;
 use App\Form\UserRegistrationFormType;
 use App\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
@@ -43,7 +46,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/register", name = "app_register")
      * */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator){
+    public function register(MailerInterface $mailer, Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator){
 
         $form = $this->createForm(UserRegistrationFormType::class);
         $form->handleRequest($request);
@@ -51,14 +54,30 @@ class SecurityController extends AbstractController
         if($form->isSubmitted() && $form->isValid())
         {
             /** @var User $user*/
-            $user = $form->getData();
-            $user->setFirstName($request->request->get('firstName'));
-            $user->setLastName($request->request->get('lastName'));
-            $user->setEmail($request->request->get('email'));
-            $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('password')));
 
+        /*if($request->isMethod('POST'))
+        {
+            $user = new User;*/
+            $user = $form->getData();
+            /*$user->setFirstName($request->request->get('firstName'));
+            $user->setLastName($request->request->get('lastName'));
+            $user->setEmail($request->request->get('email'));*/
+            /*$user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('password')));*/
+            $user->setPassword($passwordEncoder->encodePassword($user, $form['plainPassword']->getData()));
+            if (true === $form['agreeTerms']->getData()){
+                $user->agreeTerms();
+            }
             $em->persist($user);
             $em->flush();
+
+            $email = (new TemplatedEmail())
+                ->from('danny.eeraerts@proximus')
+                ->to($user->getEmail())
+                ->subject('Welcome to the Space Bar!')
+                ->htmlTemplate("email/welcome.html.twig");
+
+            $mailer->send($email);
+
 
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
@@ -67,6 +86,9 @@ class SecurityController extends AbstractController
                 'main',
             );
         }
-        return $this->render('security/register.html.twig');
+        /*return $this->render('security/register.html.twig');*/
+        return $this->render('security/register.html.twig',[
+            'registrationForm' => $form->createView()
+        ]);
     }
 }

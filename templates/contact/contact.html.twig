@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href ="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href ="{{ asset('css/form.css') }}">
+    <link rel="stylesheet" href ="{{ asset('css/datepicker.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row d-flex justify-content-center mt-4 ">
+        <div class="col-12 col-lg-8 position px-0">
+            <div class="border border-secondary">
+                {{ form_start(contactForm, {attr: {'novalidate': 'novalidate'}}) }}
+                <h1 class="h3 mb-3 text-center font-weight-normal">Contact Us</h1>
+                {{ form_widget(contactForm) }}
+                <button class="btn btn-lg btn-dark btn-block" type="submit">
+                    Submit
+                </button>
+                {{ form_end(contactForm) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/hide_error_message.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src ="{{ asset('js/datepicker.js') }}"></script>
+{% endblock %}
