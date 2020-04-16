@@ -38,7 +38,7 @@ class Article
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     *  @Assert\NotBlank(message="Content can not be blanc!  ❌")
+     * @Assert\NotBlank(message="Content can not be blanc!  ❌")
      */
     private $content;
 
@@ -259,7 +259,7 @@ class Article
             && (strpos($this->getImageFileName(), 'jpeg') == false)
         )
         {
-            $context->buildViolation('The image file must be of format .jpg or .png or .jpeg ❌')
+            $context->buildViolation('The file must be of format .jpg or .png or .jpeg ❌')
                 ->atPath('imageFileName')
                 ->addViolation();
         }

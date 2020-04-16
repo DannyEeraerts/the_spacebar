@@ -45,17 +45,20 @@
                 <i class="fas fa-tools mr-2"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{{ path('admin_comment')}}">New Article</a>
+                <a class="dropdown-item" href="{{ path('admin_article_new')}}">New Article</a>
             </div>
         </div>
         {% endif %}
+        <a href="{{ path ('app_contact')}}" class="btn btn-dark ml-2" role="button">Contact</a>
     </nav>
     <main>
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success">
-                {{ message }}
-            </div>
-        {% endfor %}
+        <div class ="text-center">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
         {% block body %}{% endblock %}
     </main>
     <footer class="p-3 text-center">

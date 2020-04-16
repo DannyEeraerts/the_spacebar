@@ -18,8 +18,14 @@
             {button_text: 'update'})
         }}
     </div>
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/hide_error_message.js') }}"></script>
+    <script type="text/javascript">
+      $(function () {
+        $('#datetimepicker').datetimepicker();
+      });
+    </script>
 {% endblock %}

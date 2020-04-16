@@ -1,10 +1,10 @@
-input.form-control{
+input.form-control, select.form-control{
   border: 1.5px solid #23272b;
   border-bottom: none;
   border-right: none;
   border-radius: 0.15rem;
   background-color: whitesmoke;
-  color: #0a0a0a;
+  color: #797979;
   font-size: 0.85rem;
 }
 .input-group-append{
@@ -18,25 +18,16 @@ input.form-control{
   background-image: none;
 }
 .btn-light:hover {
-  color: blue;
+  color: #3296b4;
   background-color: whitesmoke;
 }
 nav form input.form-control:hover{
-  border: 1px solid blue;
+  border: 1px solid #3296b4;
 }
-.alert-danger{
-  background: red;
-  color: whitesmoke;
-}
-.alert{
-  border-radius: unset;
-  padding: 0.5rem 0.85rem;
-}
-.alert-success{
-  background-color: #3296b4;
-  color: whitesmoke;
-}
+
 .position{
-  margin-top: 8rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   background-color: rgb(219, 120, 0);
 }

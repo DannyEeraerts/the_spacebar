@@ -1,0 +1,31 @@
+.datepicker tfoot tr th:hover, .datepicker .datepicker-switch:hover, .datepicker .datepicker-switch:hover,
+.datepicker .prev:hover, .datepicker .next:hover, .datepicker table tr td span:hover,
+.datepicker table tr td span.focused, .datepicker table tr td.day:hover{
+  background: darkorange!important;
+  color: whitesmoke;
+}
+.datepicker{
+  padding: 0.5rem;
+  border-radius: unset!important;
+}
+.datepicker {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;;
+}
+.datepicker th {
+  border: 0.5px solid #b4b4b4 !important;
+  border-radius: unset!important;
+  padding: 0.25rem 0.45rem;
+  background-color: whitesmoke;
+}
+.datepicker .cw, .datepicker .dow {
+  background-color: #b4b4b4 !important;
+  border: 0.5px solid grey !important;
+}
+.datepicker td{
+  border-radius: unset!important;
+  border: 0.5px solid #b4b4b4 !important;
+}
+.datepicker th.next, .datepicker th.prev{
+  background-color: #b4b4b4 !important;
+  border: 0.5px solid grey !important;
+}
