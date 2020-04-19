@@ -17,7 +17,9 @@ use Symfony\Component\Intl\Timezones;
 
 class ArticleController extends AbstractController
 {
-    /*@Route("/{local}", name="app_homepage", locale="en", requirements = {"locale": "en|nl"})*/
+/*@Route("/{locale}", name="app_homepage", locale="en", requirements = {"locale": "en|nl"})*/
+
+
 
     /**
      * @Route("/", name="app_homepage")

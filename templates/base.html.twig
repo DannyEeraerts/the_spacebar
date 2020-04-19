@@ -12,62 +12,92 @@
         {% endblock %}
     </head>
     <body>
-    <nav class="navbar navbar-light px-5 py-3">
-        <a class="navbar-brand pt-1" href="{{ path('app_homepage') }}">
-            <i class="fas fa-meteor"></i>
-            <p class="pl-2 d-inline font-weight-bold text-light">The Space Bar</p>
-        </a>
-        <a class="nav-link" href="#">Asteroids</a>
-        <a  class="nav-link" href="#">Comets</a>
-        <a  class="nav-link" href="#">Planets</a>
-        <form class="form-inline my-2 my-lg-0 ml-auto">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <button class="btn btn-dark ml-2">Create Post</button>
-        <div class="btn-group ml-2">
-            <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user-edit mr-1"></i>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                {% if (is_granted('ROLE_USER')) %}
-                    <a class="dropdown-item" href="{{ path('app_account') }}">Manage account</a>
-                    <a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a>
-                {% else %}
-                    <a class="dropdown-item" href="{{ path('app_login') }}">Login</a>
-                    <a class="dropdown-item" href="{{ path('app_register')}}">Register</a>
-                {% endif %}
+        <header>
+            <section class = "topbar">
+                <nav class="navbar navbar-dark d-flex justify-content-end px-5 pb-0 pt-3">
+                    <a href="{{ path('app_homepage') }}" class="btn btn-dark ml-2" data-toggle="tooltip" title="home" role="button"><i class="fas fa-home"></i></a>
+                    <a href="{{ path('admin_article_list') }}" class="btn btn-dark ml-2" data-toggle="tooltip" title="content" role="button"><i class="fas fa-newspaper"></i></a>
+                    <a href="#" id="c_contrast" class="btn btn-dark ml-2" data-toggle="tooltip" title="contrast" role="button"><i class="fas fa-adjust"></i></a>
+                    <a href="#" id="f_size" class="btn btn-dark ml-2" data-toggle="tooltip" title="fontsize" role="button"><i class="fas fa-text-height"></i></a>
+                    <a href="#" class="btn btn-dark ml-2" data-toggle="tooltip" title="taal aanpassen" role="button">NL</a>
+                    <a href="#" class="btn btn-dark ml-2" data-toggle="tooltip" title="change language" role="button">EN</a>
+                </nav>
+            </section>
+            <section class = "mainbar">
+                <nav class="navbar navbar-expand-lg navbar-light px-5 pb-3">
+                    <a class="navbar-brand pt-1" href="{{ path('app_homepage') }}">
+                        <i class="fas fa-meteor"></i>
+                        <p class="pl-2 d-inline font-weight-bold text-light">The Space Bar</p>
+                    </a>
+                    <a class="nav-link" href="#">Asteroids</a>
+                    <a  class="nav-link" href="#">Comets</a>
+                    <a  class="nav-link" href="#">Planets</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                        <div class="navbar-nav">
+                            <form class="form-inline my-2 my-lg-0 ml-auto">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                            <button class="nav-item btn btn-dark ml-2">Create Post</button>
+                            <div class="nav-item btn-group ml-2">
+                                <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user-edit mr-1"></i>
+                                </button>
+                                <div class="nav-item dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    {% if (is_granted('ROLE_USER')) %}
+                                        <a class="dropdown-item" href="{{ path('app_account') }}">Manage account</a>
+                                        <a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a>
+                                    {% else %}
+                                        <a class="dropdown-item" href="{{ path('app_login') }}">Login</a>
+                                        <a class="dropdown-item" href="{{ path('app_register')}}">Register</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% if (is_granted('ROLE_USER')) %}
+                            <div class="nav-item btn-group ml-2">
+                                <button type="button" class="btn btn-dark dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-tools mr-2"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="{{ path('admin_article_new')}}">New Article</a>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <a href="{{ path ('app_contact')}}" class="nav-item btn btn-dark ml-2" role="button">Contact</a>
+                        </div>
+                    </div>
+                </nav>
+            </section>
+        </header>
+        <main>
+            <div class ="text-center">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
             </div>
-        </div>
-        {% if (is_granted('ROLE_USER')) %}
-        <div class="btn-group ml-2">
-            <button type="button" class="btn btn-dark dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-tools mr-2"></i>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{{ path('admin_article_new')}}">New Article</a>
+            {% block body %}{% endblock %}
+        </main>
+        <footer class="p-3 text-center">
+            <div>
+                Made with <i class="fa fa-heart"></i> by <span class="color">ED</span>web&photoStudio
             </div>
-        </div>
-        {% endif %}
-        <a href="{{ path ('app_contact')}}" class="btn btn-dark ml-2" role="button">Contact</a>
-    </nav>
-    <main>
-        <div class ="text-center">
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-success">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        </div>
-        {% block body %}{% endblock %}
-    </main>
-    <footer class="p-3 text-center">
-        Made with <i class="fa fa-heart"></i> by <span class="color">ED</span>web&photoStudio
-    </footer>
-    {% block javascripts %}
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    {% endblock %}
-    </body>
+            <div>
+                <!-- Sign up button -->
+                <a href="">Terms and Conditions -</a>
+                <a href="">Privacy policy -</a>
+                <a href="">Cookie policy</a>
+            </div>
+        </footer>
+        {% block javascripts %}
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+            <script src="{{ asset("js/font_size.js") }}"></script>
+        {% endblock %}
+        </body>
 </html>

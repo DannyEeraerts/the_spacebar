@@ -47,7 +47,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=60)
      * @Assert\NotBlank(message="Please enter your lastname  ❌")
-     * @Assert\Length(min=2, minMessage="A firstname is longer than one character ❌")
+     * @Assert\Length(min=2, minMessage="A lastname is longer than one character ❌")
      */
     private $lastName;
 
@@ -65,6 +65,16 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $agreedTermsAt;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $reset_token;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $expire_date_reset_token;
 
 
     public function __construct()
@@ -218,6 +228,30 @@ class User implements UserInterface
     public function agreeTerms(): self
     {
         $this->agreedTermsAt = new \DateTime();
+
+        return $this;
+    }
+
+    public function getResetToken(): ?string
+    {
+        return $this->reset_token;
+    }
+
+    public function setResetToken(?string $reset_token): self
+    {
+        $this->reset_token = $reset_token;
+
+        return $this;
+    }
+
+    public function getExpireDateResetToken(): ?\DateTimeInterface
+    {
+        return $this->expire_date_reset_token;
+    }
+
+    public function setExpireDateResetToken(?\DateTimeInterface $expire_date_reset_token): self
+    {
+        $this->expire_date_reset_token = $expire_date_reset_token;
 
         return $this;
     }

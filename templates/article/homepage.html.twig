@@ -22,7 +22,7 @@
                     </div>
                 </a>
 
-                <a href="{{ path('article_show',{slug:'astroids-comets-and-planets-184'}) }}">
+                <a href="{{ path('article_show',{slug:'Astroids-Comets-And-Planets-663'}) }}">
                     <div class="mb-4 pb-3 border">
                         <img class="img-fluid mb-3 border-bottom" src=" {{ asset('images/416_16_psyche_main.jpg') }} " alt="astroid 416">
                         <h3 class="text-center mt-2"><span class="color">Astroids</span>, <span class="color">Comets</span> and <span class="color">Planets</span></h3>
@@ -40,26 +40,36 @@
                 </div>#}
                 {% for article in articles %}
                 <div class="my-1 border mb-4">
-                    <a href="{{path('article_show', {slug: article.slug})}}"}>
-                    <img class="article-img" src="{{ asset(article.imagePath) }}" alt ="planet Mercury">
-                    <div class="article-title d-inline-block pl-3 align-middle">
-                        <p> <span class="color">{{ article.title }} </span><br><span>{{ article.comments|length }} comments</span></p>
-                        <div class="mt-2" style = "color: white">
-                            <span class="align-left "><img class="article-author-img rounded-circle" src="{{ asset('images/astronaut-profile.png') }}" alt="{{article.author}}"> {{article.author}} </span>
-                            <span class="pl-5 article-details text-right"> {{ article.publishedAt ? article.publishedAt | ago  : 'unpublished'}}
-                            on
-                            {{ article.publishedAt ? article.publishedAt | date('D d/m/Y')  : 'unpublished'}}</span>
-                            <p class="article-details mt-1">
-                                tags:&nbsp
-                                {% for tag in article.tags %}
-                                    <span class="badge badge-secondary">
-                                        {{ tag.name }}
-                                    </span>
-                                {% endfor %}
-                            </p>
-                        </div>
+                    <div class="row">
+
+                            <div class="col-4 text-center">
+                                <a href="{{ path('article_show', {slug: article.slug}) }}" >
+                                    <img src="{{ asset(article.imagePath) }}" class="img-fluid" alt ="planet Mercury">
+                                </a>
+                            </div>
+                            <div class="col-8">
+                                <a href="{{ path('article_show', {slug: article.slug}) }}">
+                                    <div class="article-title align-middle">
+                                        <p> <span class="color">{{ article.title }} </span><br><span>{{ article.comments|length }} comments</span></p>
+                                        <div class="mt-2" style = "color: white">
+                                            <span class="align-left "><img class="article-author-img rounded-circle" src="{{ asset('images/astronaut-profile.png') }}" alt="{{article.author}}"> {{article.author}} </span>
+                                            <span class="pl-5 article-details text-right"> {{ article.publishedAt ? article.publishedAt | ago  : 'unpublished'}}
+                                            on
+                                            {{ article.publishedAt ? article.publishedAt | date('D d/m/Y')  : 'unpublished'}}</span>
+                                            <p class="article-details mt-1">
+                                                tags:&nbsp
+                                                {% for tag in article.tags %}
+                                                    <span class="badge badge-secondary">
+                                                        {{ tag.name }}
+                                                    </span>
+                                                {% endfor %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
                     </div>
-                    </a>
                 </div>
                 {% endfor %}
 

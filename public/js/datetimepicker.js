@@ -4,6 +4,7 @@ jQuery(document).ready(function() {
     {
       startDate: today,
       minDate: today,
+      format:'Y-m-d H:i:s',
     }
   );
 });

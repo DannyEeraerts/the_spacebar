@@ -4,69 +4,100 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href ="{{ asset('css/login.css') }}">
-    <link rel="stylesheet" href ="{{ asset('css/form.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
 {% endblock %}
 
 {% block body %}
-    <div class="container">
-        <div class="row d-flex justify-content-center mt-4 ">
-            <div class="col-12 col-lg-8 position px-0">
-                <div class="border border-secondary">
-                    {{ form_start(registrationForm,
-                        {attr: {'novalidate': 'novalidate'}})
-                    }}
-                        <h1 class="h3 mb-3 text-center font-weight-normal">Register</h1>
-                        {{ form_widget(registrationForm) }}
-                        <button class="btn btn-lg btn-dark btn-block" type="submit">
-                            Register
-                        </button>
-                    {{ form_end(registrationForm) }}
-
-                    {#<form method="post" novalidate>
-                        <div class="form-group">
-                            <label for="inputFirstName" class="sr-only">FirstName</label>
-                            <input type="text" name="firstName" id="inputFirstName"
-                                   class="form-control" placeholder="Firstname" required autofocus>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputLastName" class="sr-only">LastName</label>
-                            <input type="text" name="lastName" id="inputLastName"
-                                   class="form-control" placeholder="Lastname" required autofocus>
-                        </div>
-                        <div class="form-group mb-0">
-                            <label for="inputEmail" class="sr-only">Email</label>
-                            <input type="email" name="email" id="inputEmail"
-                                   class="form-control" placeholder="Email" required autofocus>
-                            <small class="text-light">We never share your email</small>
-                        </div>
-                        <div class="input-group" id="show_hide_password">
-                            <label for="inputPassword" class="sr-only">Password</label>
-                            <input type="password" name="password" id="inputPassword"
-                                   class= "form-control" placeholder="Password" required>
-                            <div class="input-group-append">
-                                <button class="btn btn-light border-none"><i class="password-eye fa fa-eye-slash"></i></button>
-                            </div>
-                        </div>
-                        <div class="checkbox mb-3">
-                            <label>
-                                <input type="checkbox" name="_remember_me"> <small>Agree to terms I for sure reed</small>
-                            </label>
-                        </div>
-
-                        <div >
-                            <button class="btn btn-lg btn-dark btn-block" type="submit">
-                                Register
-                            </button>
-                        </div>
-                    </form>#}
-                </div>
+    <div class="container mt-5">
+        {{ form_start(registrationForm,
+            {attr: {'novalidate': 'novalidate'}}) }}
+        <h1 class="mb-4 font-weight-normal text-center">Register</h1>
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                {{ form_row(registrationForm.firstName) }}
+            </div>
+            <div class="col-12 col-lg-6">
+                {{ form_row(registrationForm.lastName) }}
             </div>
         </div>
+        <div class="row">
+            <div class="col-12">
+                {{ form_row(registrationForm.email) }}
+            </div>
+        </div>
+        {#<div class="row">
+            <div class="col-12">
+                {{ form_row(registrationForm.plainPassword) }}
+            </div>
+        </div>
+#}
+        <div class ="row">
+
+            <div class ="col-12 col-lg-6 mb-2 mb-lg-0">
+                <!-- Password -->
+                <div class="form-group mb-0">
+                    <div class="d-flex justify-content-between">
+                        <label class="mb-1">Password *</label>
+                        <span class ="errorPassword">{{ form_errors(registrationForm.plainPassword.first) }}</span>
+                    </div>
+                    <div class="input-group" id="show_hide_password">
+                        {{ form_widget(registrationForm.plainPassword.first) }}
+                        <div class="input-group-addon px-2 d-flex align-items-center">
+                            <span><i class="password-eye fa fa-eye-slash" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class ="col-12 col-lg-6">
+                <!-- Password Repeat -->
+                <div class="form-group mb-0">
+                    <label>Repeat password *</label>
+                    <label class ="errorPassword">{{ form_errors(registrationForm.plainPassword.second) }}</label>
+                    <div class="input-group" id="show_hide_password">
+                        {{ form_widget(registrationForm.plainPassword.second) }}
+                        <div class="input-group-addon px-2 d-flex align-items-center">
+                            <span><i class="password-eye fa fa-eye-slash" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class ="col-12 mb-2 text-left">
+                <!-- Aanwijzingstekst -->
+                <small class="text-muted mb-1 mt-2 mb-sm-0">
+                    Minimum 8 and maximum 13 characters, at least one lowercase letter, one uppercase letter,
+                    one numeric digit, and one special character, but cannot contain whitespace.
+                </small>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                {{ form_rest(registrationForm) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-lg btn-dark btn-block" type="submit">
+                    Register
+                </button>
+            </div>
+        </div>
+
+        {{ form_end(registrationForm) }}
+
     </div>
+
+
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/password_show.js') }}"></script>
+    <script src="{{ asset('js/passwords_show_userForm.js') }}"></script>
     <script src="{{ asset('js/hide_error_message.js') }}"></script>
 {% endblock %}

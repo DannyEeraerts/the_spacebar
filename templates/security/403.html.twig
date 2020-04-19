@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add New Article{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/403.css') }}">
+{% endblock %}
+{% block body %}
+    <div class="container-fluid mt-5">
+        <div class="row text-center position">
+            <div class="offset-2 col-8 offset-lg-3 col-lg-6 bg-color padding mt-5">
+                <div class="image border p-5">
+                    <h1 class="mt-5">403</h1>
+                    <h4 class="mb-5">Access Denied</h4>
+                </div>
+            </div>
+            <div class="offset-2 col-8 offset-lg-3 col-lg-6 bg-color pb-5">
+                <a href="{{ path('app_login') }}">Try to login again</a>
+            <div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -32,8 +32,8 @@ class ArticleFormType extends AbstractType
                 'attr' => [
                     'class' => 'datetimepicker',
                     'placeholder' => 'Select a date and time'],
-                'format' => 'd/m/Y H:i:s',
-                'date_format' => 'd/m/Y H:i:s',
+                'format' => 'Y-mm-d H:i:s',
+                'date_format' => 'Y-mm-d H:i:s',
             ])
             ->add('imageFileName', null,[
                 'attr'=> [

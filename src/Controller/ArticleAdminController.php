@@ -172,10 +172,13 @@ EOF);
         $form = $this->createForm(ArticleFormType::class);
 
         $form->handleRequest($request);
+
+
+
         if ($form->isSubmitted() && $form->isValid()) {
-           //$data = $form->getData();
-           $article = new Article;
+
            $article = $form->getData();
+           //$article = new Article;
            //$article->setTitle($data->getTitle());
            $slug = str_replace(' ','-', $form->getData()->getTitle()).'-'.rand(100,999);
            $article->setSlug($slug);
@@ -184,7 +187,6 @@ EOF);
            //$date = new \DateTime('@'.strtotime('now'));
            //$article->setPublishedAt($date);
            //$article->setImageFileName($data->getImageFileName());
-
            $em->persist($article);
            $em->flush();
 

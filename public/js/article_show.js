@@ -6,18 +6,13 @@ const title = document.querySelector(".title");
 function toggleClass(){
 
   let result = this.classList.contains("fa-heart-o");
-  console.log(heart.dataset.link);
   let path = heart.dataset.link;
-  console.log(path);
-  console.log(title);
   if (result) {
     this.classList.remove("fa-heart-o");
     this.classList.add("fa-heart");
     let xhr = new XMLHttpRequest();
-    console.log(title);
     xhr.open('POST', '/news/'+ path +'/heart', true);
     xhr.onload=function(){
-      console.log(xhr.status);
       if(xhr.status === 200){
         let response = xhr.responseText;
         let object = JSON.parse(response);

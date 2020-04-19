@@ -6,12 +6,7 @@ input.form-control, select.form-control{
   background-color: whitesmoke;
   color: #797979;
   font-size: 0.85rem;
-}
-.input-group-append{
-  background-color: whitesmoke;
-  border-top: 1.5px solid #23272b;
-  color: darkorange;
-  line-height: 1.5;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.75), 0 -1px 1px #FFF, 0 1px 0 #FFF;
 }
 .border-none, .border-none:hover{
   border: none;
@@ -30,4 +25,18 @@ nav form input.form-control:hover{
   top: 50%;
   transform: translateY(-50%);
   background-color: rgb(219, 120, 0);
+}
+
+.input-group-addon{
+  border: 1.5px solid #23272b;
+  border-bottom: none;
+  border-right: none;
+  border-radius: 0.15rem;
+  background-color: whitesmoke;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.75), 0 -1px 1px #FFF, 0 1px 0 #FFF;
+
+}
+.fa-eye-slash, .fa-eye{
+  color: #797979;
+  font-size: 0.85rem;
 }

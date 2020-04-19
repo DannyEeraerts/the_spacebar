@@ -5,71 +5,72 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href ="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href ="{{ asset('css/form.css') }}">
 {% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row d-flex justify-content-center mt-4 ">
-        <div class="col-12 col-md-6 position px-0">
-            <div class="border border-secondary p-5">
-                <h1 class="h3 mb-3 text-center font-weight-normal">Please sign in</h1>
-                <form method="post" novalidate>
-                    {% if error %}
-                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                    {% endif %}
-                    <div class="form-group">
-                        <label for="inputEmail" class="sr-only">Email</label>
-                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
-                               class="form-control" placeholder="Email" required autofocus>
-                        <small class="text-light">We never share your email</small>
-                    </div>
-                    <div class="input-group mb-3" id="show_hide_password">
-                        <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="password" name="password" id="inputPassword"
-                               class= "form-control" placeholder="Password" required>
-                        <div class="input-group-append">
-                            <button class="btn btn-light border-none"><i class="password-eye fa fa-eye-slash"></i></button>
-                        </div>
-                    </div>
-                    <div class="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" name="_remember_me"> Remember me
-                        </label>
-                    </div>
-                    <input type="hidden" name="_csrf_token"
-                           value="{{ csrf_token('authenticate') }}"
-                    >
+<div class="container mt-5">
 
-                    {#
-                        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                        See https://symfony.com/doc/current/security/remember_me.html
+    <form method="post" novalidate autocomplete="off">
+        {% if error %}
+            <span class="invalid-feedback d-block mb-2">
+                <span class="d-block p-2">
+                    <span class="form-error-icon badge badge-danger text-uppercase">Error</span>
+                    <span class="form-error-message">{{ error.messageKey|trans(error.messageData, 'security') }} ❌</span>
+                </span>
+            </span>
+        {% endif %}
+        <h1 class="mb-4 text-center font-weight-normal">Please sign in</h1>
+        <div class="form-group">
+            <label for="inputEmail" class="required">Email</label>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
+                   class="form-control" placeholder="example@email.be" required autofocus>
+            <small class="text-light">We never share your email</small>
+        </div>
 
-                        <div class="checkbox mb-3">
-                            <label>
-                                <input type="checkbox" name="_remember_me"> Remember me
-                            </label>
-                        </div>
-                    #}
-                    <div class="mb-3">
-                        <button class="btn btn-lg btn-dark btn-block" type="submit">
-                            Sign in
-                        </button>
-                    </div>
-                    <div class="d-flex">
-                        <div class="mr-auto">
-                            <p>Don't have an account? <a href="{{ path('app_register') }}">Register</a></p>
-                        </div>
-                        <div>
-                            <a href="#">Forgot your password?</a>
-                        </div>
-                    </div>
-                </form>
+        <div class="form-group mb-3" id="show_hide_password">
+            <label for="inputPassword" class="required">Password</label>
+            <div class="d-flex">
+                <input type="password" name="password" id ="inputPassword"
+                       class= "form-control" placeholder="Password" required>
+                <div class="input-group-addon px-2 d-flex align-items-center">
+                    <span><i class="password-eye fa fa-eye-slash" aria-hidden="true"></i></span>
+                </div>
             </div>
         </div>
-    </div>
+
+        <div class="checkbox mb-3">
+            <label class="d-block">
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
+
+        <div class="mb-3">
+            <button class="btn btn-lg btn-dark btn-block" type="submit">
+                Sign in
+            </button>
+        </div>
+        <div class="d-flex">
+            <div class="mr-auto">
+                <p>Don't have an account? <a href="{{ path('app_register') }}">Register</a></p>
+            </div>
+            <div>
+                <a href="{{ path('app_recover_password') }}">Forgot your password?</a>
+            </div>
+        </div>
+    </form>
+
 </div>
+
+
+
+
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/password_show.js') }}"></script>
+    <script src="{{ asset('js/passwords_show_userForm.js') }}"></script>
+    <script src="{{ asset('js/hide_error_message.js') }}"></script>
 {% endblock %}
