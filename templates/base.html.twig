@@ -80,6 +80,14 @@
                     </div>
                 {% endfor %}
             </div>
+            <div class ="text-center">
+                {% for message in app.flashes('notice') %}
+                    <div class="flash-notice">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+
             {% block body %}{% endblock %}
         </main>
         <footer class="p-3 text-center">

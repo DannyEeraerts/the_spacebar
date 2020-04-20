@@ -25,7 +25,7 @@ main {
 }
 .alert{
   text-transform: uppercase;
-  border: 2px solid darkorange;
+  border: 2px solid whitesmoke;
   border-radius: unset;
   padding: 0.75rem 0.85rem;
 }
@@ -33,7 +33,14 @@ main {
   background-color: #3ab3b4;
   color: whitesmoke;
 }
-
+.flash-notice{
+  background-color: red;
+  color: whitesmoke;
+  text-transform: uppercase;
+  border: 2px solid whitesmoke;
+  border-radius: unset;
+  padding: 0.75rem 0.85rem;
+}
 a, a:hover {
   text-decoration: none;
 }
