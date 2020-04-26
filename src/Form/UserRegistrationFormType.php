@@ -21,10 +21,11 @@ class UserRegistrationFormType extends AbstractType
     {
         $builder
             ->add('firstName', null,[
-                'label' => 'FirstName *',
+                'label' => ('Firstname *'),
                 'attr' => [
                             'placeholder' => 'Firstname (min 2 letters)'
                             ],
+                'translation_domain' => 'messages'
                 /* 'constraints' => [
                    new Regex([
                         '/\d/',
@@ -33,10 +34,11 @@ class UserRegistrationFormType extends AbstractType
                 ]*/
             ])
             ->add('lastName',null,[
-                'label' => 'LastName *',
+                'label' => 'Lastname *',
                 'attr' => [
                     'placeholder' => 'Lastname (min 2 letters)'
                 ],
+                'translation_domain' => 'messages'
                 /*'constraints' => [
                     new Regex([
                         '/\d/',
@@ -49,24 +51,25 @@ class UserRegistrationFormType extends AbstractType
                 'help' => 'We never share your email',
                 'attr' => [
                     'placeholder' => 'Email'
-                ]
+                ],
+                'translation_domain' => 'messages'
             ])
             // don't use password: avoid EVER setting that on a
             // field that might be persisted
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'mapped' => false,
-                'first_options' => ['attr' => ['placeholder' => 'password', 'class' => 'input-group-addon ml-auto inputPassword' ],
+                'first_options' => ['attr' => ['placeholder' => 'Password', 'class' => 'input-group-addon ml-auto inputPassword' ],
                                     'label' => 'Password',
                                     /*'help' => 'Minimum 8 and maximum 13 characters, at least one lowercase letter, one uppercase letter,
                                      one numeric digit, and one special character, but cannot contain whitespace.',*/
                 ],
-                'second_options' => ['attr' => ['placeholder' => 'repeat password', 'class' => 'input-group-addon ml-auto inputPassword' ],
+                'second_options' => ['attr' => ['placeholder' => 'Repeat password', 'class' => 'input-group-addon ml-auto inputPassword' ],
                                     'label' => 'Repeat password',
                 ],
                 'constraints' =>
                     [new NotBlank([
-                        'message' => 'This is not a valid Password ❌'
+                        'message' => 'Password is required ❌'
                         ]),
                     new Length([
                         'min' => 8,

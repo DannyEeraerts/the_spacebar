@@ -25,31 +25,38 @@ class ContactFormType extends AbstractType
             ->add('firstName',TextType::class,[
                 'label' => 'Firstname *',
                 'attr' =>[
-                    'placeholder' => 'Firstname (at least 2 characters)'
+                    'placeholder' => 'Firstname (min 2 letters)'
                     ],
                 'constraints' => [
-                    new NotBlank(),
+                    new NotBlank([
+                        'message' => 'Firstname is required ❌'
+                    ]),
                     new Length(['min' => 2]),
                 ],
+                'translation_domain' => 'messages'
             ])
             ->add('Lastname',TextType::class,[
-                'label' => 'lastName *',
+                'label' => 'LastName *',
                 'attr' =>[
-                    'placeholder' => 'Lastname (at least 2 characters)'
+                    'placeholder' => 'Lastname (min 2 letters)'
                 ],
                 'constraints' => [
-                    new NotBlank(),
+                    new NotBlank([
+                        'message' => 'Lastname is required ❌'
+                    ]) ,
                     new Length(['min' => 2]),
                 ],
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email *',
-                'help' => 'we never share your email',
+                'help' => 'We never share your email',
                 'attr' =>[
                     'placeholder' => 'Email'
                 ],
                 'constraints' => [
-                    new NotBlank(),
+                    new NotBlank([
+                        'message' => 'Email is required ❌'
+                    ]),
                     new Email(),
                 ]
             ])
@@ -57,7 +64,7 @@ class ContactFormType extends AbstractType
                 'widget' =>'single_text',
                 'attr' => ['class' => 'js-datepicker'],
                 'html5' => false,
-                'years' => range($minYear, $year),
+                'format' => 'dd/MM/yyyy',
             ])
             ->add('gender', ChoiceType::class,[
                 'label' => 'Gender *',
@@ -67,8 +74,11 @@ class ContactFormType extends AbstractType
                         'Third gender' =>'Third gender'],
                 'placeholder' => 'Choose your gender',
                 'constraints' => [
-                    new NotBlank(),
-                ]
+                    new NotBlank([
+                        'message' => 'Gender is required ❌'
+                    ]),
+                ],
+                'translation_domain' => 'messages'
 
             ])
             ->add('message', TextareaType::class,[
@@ -77,9 +87,12 @@ class ContactFormType extends AbstractType
                     'rows' => '4'
                 ],
                 'constraints' => [
-                    new NotBlank(),
-                    new Length(['min'=>6])
-                ]
+                    new NotBlank([
+                        'message' => 'Message is required ❌'
+                    ]),
+                    new Length(['min'=>6, 'minMessage' => 'Message is too short. It should have 6 characters or more ❌'])
+                ],
+                'translation_domain' => 'messages'
             ])
         ;
     }

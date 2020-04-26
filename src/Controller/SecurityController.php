@@ -18,8 +18,18 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/login", name="app_login")
+     * @Route("/login",
+     *  defaults={"%locale%":"en"},
+     *      )
+     * @Route("/{_locale}/login",
+     *      name="app_login",
+     *      requirements={
+     *         "_locale":"en|nl",
+     *     }
+     *  )
      */
+
+
     public function login(AuthenticationUtils $authenticationUtils)
     {
         // get the login error if there is one
@@ -43,8 +53,17 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/register", name = "app_register")
-     * */
+     * @Route("/register",
+     *  defaults={"%locale%":"en"},
+     *      )
+     * @Route("/{_locale}/register",
+     *      name="app_register",
+     *      requirements={
+     *         "_locale":"en|nl",
+     *     }
+     *  )
+     */
+
     public function register(MailerInterface $mailer, Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator){
 
         $form = $this->createForm(UserRegistrationFormType::class);

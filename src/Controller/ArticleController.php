@@ -22,8 +22,17 @@ class ArticleController extends AbstractController
 
 
     /**
-     * @Route("/", name="app_homepage")
+     * @Route("/")
+     *      defaults={"%locale%":"en"},
+     *     )
+     * @Route("/{_locale}",
+     *     name="app_homepage",
+     *     requirements={
+     *         "_locale":"en|nl",
+     *     }
+     * )
      */
+
     public function homepage(ArticleRepository $repository)
     {
 

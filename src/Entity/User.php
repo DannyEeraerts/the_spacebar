@@ -27,7 +27,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Assert\NotBlank(message="Please enter an email  ❌")
+     * @Assert\NotBlank(message="Email is required ❌")
      * @Assert\Email()
      */
     private $email;
@@ -39,14 +39,14 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=60)
-     * @Assert\NotBlank(message="Please enter your firstname  ❌")
+     * @Assert\NotBlank(message="Firstname is required ❌")
      * @Assert\Length(min=2, minMessage="A firstname is longer than one character ❌")
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=60)
-     * @Assert\NotBlank(message="Please enter your lastname  ❌")
+     * @Assert\NotBlank(message="Lastname is required ❌")
      * @Assert\Length(min=2, minMessage="A lastname is longer than one character ❌")
      */
     private $lastName;
@@ -58,6 +58,7 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="author")
+     * @Assert\Length(min=8, minMessage="Password must have at least 8 characters ❌")
      */
     private $articles;
 

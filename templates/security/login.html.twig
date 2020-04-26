@@ -20,19 +20,19 @@
                 </span>
             </span>
         {% endif %}
-        <h1 class="mb-4 text-center font-weight-normal">Please sign in</h1>
+        <h1 class="mb-4 text-center font-weight-normal">{% trans %}Please sign in{% endtrans %}</h1>
         <div class="form-group">
             <label for="inputEmail" class="required">Email</label>
             <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
                    class="form-control" placeholder="example@email.be" required autofocus>
-            <small class="text-light">We never share your email</small>
+            <small class="text-light">{% trans %}We <u>never</u> share your email{% endtrans %}</small>
         </div>
 
         <div class="form-group mb-3" id="show_hide_password">
-            <label for="inputPassword" class="required">Password</label>
+            <label for="inputPassword" class="required">{% trans %}Password{% endtrans %}</label>
             <div class="d-flex">
                 <input type="password" name="password" id ="inputPassword"
-                       class= "form-control" placeholder="Password" required>
+                       class= "form-control" placeholder="{% trans %}Password{% endtrans %}" required>
                 <div class="input-group-addon px-2 d-flex align-items-center">
                     <span><i class="password-eye fa fa-eye-slash" aria-hidden="true"></i></span>
                 </div>
@@ -41,7 +41,7 @@
 
         <div class="checkbox mb-3">
             <label class="d-block">
-                <input type="checkbox" name="_remember_me"> Remember me
+                <input type="checkbox" name="_remember_me" class="mr-1">{% trans %} Remember me{% endtrans %}
             </label>
         </div>
         <input type="hidden" name="_csrf_token"
@@ -50,15 +50,15 @@
 
         <div class="mb-3">
             <button class="btn btn-lg btn-dark btn-block" type="submit">
-                Sign in
+                {% trans %}Sign in{% endtrans %}
             </button>
         </div>
         <div class="d-flex">
             <div class="mr-auto">
-                <p>Don't have an account? <a href="{{ path('app_register') }}">Register</a></p>
+                <p>{% trans %}Don't have an account{% endtrans %}? <a href="{{ path('app_register') }}">{% trans %}Register{% endtrans %}</a></p>
             </div>
             <div>
-                <a href="{{ path('app_recover_password') }}">Forgot your password?</a>
+                <a href="{{ path('app_recover_password') }}">{% trans %}Forgot your password{% endtrans %}?</a>
             </div>
         </div>
     </form>

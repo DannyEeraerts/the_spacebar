@@ -1,0 +1,63 @@
+I love Symfony: Ik hou van Symfony
+I love %name%: Ik hou van %name%
+#navbar
+fontsize: lettergrootte
+content: inhoud
+The Space Bar: De Ruimte Bar
+Asteroids: Asteroïden
+Comets: Kometen
+Planets: Planeten
+Search: Zoek
+Create Post: Maak Post aan
+Login: Inloggen
+Logout: UitLoggen
+Register: Registreer
+Manage: Beheer
+New article: Nieuw artikel
+#footer
+Terms and Conditions: Algemene voorwaarden
+Privacy policy: Privacybeleid
+Cookie policy: Cookiebeleid
+Made with: Gemaakt met
+by: door
+#homepage
+Newsite which spread light on dark matters: Nieuws website die licht werpt op donkere zaken
+The Infinite Space Bar: The Oneindige Ruimte Bar
+Buy Now: Koop Nu
+Famous quotes by astronauts: Beroemde citaten van astronauten
+Main article: Hoofdartikel
+Interstellar ice may hold the secret to life: Interstellair ijs kan het geheim van het leven bevatten
+That’s one small step for a man, one giant leap for mankind: Dit is een kleine stap voor een mens, een grote sprong voor de mensheid
+The earth must become as it appears&colon; blue and white, not capitalist or Communist; blue and white, not rich or poor; blue and white, not envious or envied: De aarde moet worden zoals ze lijkt&colon; blauw en wit, niet kapitalistisch of communistisch; blauw en wit, niet rijk of arm; blauw en wit, niet jaloers of nijdig
+I looked and looked but I didn't see God: Ik keek en keek, maar ik zag God niet
+mission: missie
+first man in space: eerste mens in de ruimte
+#login
+Please sign in: Login
+Password: Paswoord
+Don't have an account: Nog geen account?
+Remember me: Herinner mij
+Sign in: Log in
+Forgot your password: Wachtwoord vergeten
+We <u>never</u> share your email: We delen uw e-mail <u>nooit</u>
+#register
+Minimum 8 and maximum 13 characters, at least one lowercase letter, one uppercase letter and one numeric digit: Minimaal 8 en maximaal 13 tekens, minimaal één kleine letter, één hoofdletter en één numeriek cijfer
+Firstname *: Voornaam *
+Lastname *: Achternaam *
+Password *: Paswoord *
+Repeat password *: Herhaal paswoord *
+Repeat password: Herhaal paswoord
+Agree terms and privacy policy: Akkoord met de voorwaarden en het privacybeleid
+We never share your email: We delen nooit uw e-mail.
+Lastname (min 2 letters): Achternaam (min 2 letters)
+Firstname (min 2 letters): Voornaam (min 2 letters)
+#contact
+Contact us: Contacteer ons
+Submit: Verzend
+Choose your gender: Kies jouw geslacht
+Gender *: Geslacht *
+Male: Man
+Female: Vrouw
+Third gender: Derde geslacht
+Date of birth: Geboortedatum
+Message *: Boodschap *
