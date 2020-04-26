@@ -2,17 +2,14 @@ body{
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  background: url('../images/bleu_body.jpg');
-  background-color: rgb(5, 5, 18);
   background-position-x: center;
   background-position-y: top;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-size: auto;
+  background: rgb(5, 5, 18) url('../images/bleu_body.jpg') no-repeat scroll;
   background-origin: padding-box;
   background-clip: border-box;
   background-size: cover;
   color: whitesmoke;
+  font-family: 'Roboto', sans-serif;
   font-size: 0.85rem;
 }
 main {
