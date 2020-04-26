@@ -6,8 +6,10 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class ResetPasswordController extends AbstractController
@@ -24,17 +26,11 @@ class ResetPasswordController extends AbstractController
         if ($request->isMethod('GET')) {
             // check user exist?
             $user = $userRepository->findOneBy(['reset_token' => $resetToken]);
-            if ($user) {
-                $dateExpire = $user->getExpireDateResetToken();
-                $datetime = new \DateTime();
-                $datetime->format('H:i:s \O\n Y-m-d');
-                if ($datetime < $dateExpire) {
-                    $error = "";
-                    return $this->render('security/reset_password.html.twig', [
-                        'error' => $error
-                    ]);
-                    /*$plainPassword = $request->request->get('plainPassword');*/
-                }
+            $dateExpire = $user->getExpireDateResetToken();
+            $datetime = new \DateTime();
+            $datetime->format('H:i:s \O\n Y-m-d');
+            if ($user && ($datetime < $dateExpire) ){
+                    return $this->render('security/reset_password.html.twig', );
             } else {
                 $this->addFlash(
                     'notice',

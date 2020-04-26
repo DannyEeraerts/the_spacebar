@@ -13,13 +13,13 @@
 {% block body %}
 <div class="container">
     <div class="row d-flex justify-content-center mt-4 ">
-        <div class="col-12 col-lg-8 position px-0">
+        <div class="col-12 col-lg-8 mt-3 px-0">
             <div class="border border-secondary">
                 {{ form_start(contactForm, {attr: {'novalidate': 'novalidate'}}) }}
-                <h1 class="h3 mb-3 text-center font-weight-normal">Contact Us</h1>
+                <h1 class="h3 mb-3 text-center font-weight-normal">{% trans %}Contact us{% endtrans %}</h1>
                 {{ form_widget(contactForm) }}
                 <button class="btn btn-lg btn-dark btn-block" type="submit">
-                    Submit
+                    {% trans %}Submit{% endtrans %}
                 </button>
                 {{ form_end(contactForm) }}
             </div>
