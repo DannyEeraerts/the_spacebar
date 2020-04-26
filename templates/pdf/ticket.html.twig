@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ absolute_url('css/pdf/pdf.css') }}">
+</head>
+
+<body class="container p-5">
+
+    <header class="row text-center">
+       <div class="col-12 col-md-6">
+            <img src="{{ absolute_url('images/pdf/logo.png')}}" class="img-fluid p-4 " alt="logo Filmschuur">
+           <h3 class="text-center"> Reservatie:</h3>
+           <p class="text-center font-weight-bold">{{ reservationCode }}</p>
+        </div>
+        <div class="col-12 col-md-6">
+            <img src= "{{ imageQR }}"  class="img-fluid p-4" alt ="barcode "/>
+        </div>
+        <div class="col-12 pb-4 text-center">
+            <h3 class="text-center">"In de filmschuur kan je niet alleen films bekijken maar ze ook beleven"</h3>
+        </div>
+    </header>
+    <main>
+        <div class="row welcome py-2">
+            <div class="col-12">
+                <!--voornaam-->
+                <p>Dag {{ firstName }}</p>
+                <p>Hieronder vind je alle detais van je <span class="emphezise">reservering</span> terug. Het DFS-team wenst je alvast veel filmplezier.</p>
+            </div>
+        </div>
+        <div class="row text-center pb-3">
+            <div class="col-12 title pt-3 pb-2">
+                <!--filmtitle-->
+                <h1 class="font-weight-bold">A Clock WorkOrange</h1>
+            </div>
+        </div>
+
+        <div class="row text-center pb-3">
+            <div class="col-6 col-md-3 pl-0">
+                <div class="blueborder pt-2">
+                    <!--datum-->
+                    <p >Datum voorstelling:</p>
+                    <h3>{{ "now"|date("m/d/Y") }}0</h3>
+                </div>
+            </div>
+            <div class="col-6 col-md-3 pl-0">
+                <div class="blueborder pt-2">
+                    <!--uur-->
+                    <p >Uur voorstelling:</p>
+                    <h3>22u30</h3>
+                </div>
+            </div>
+            <div class="col-6 col-md-3 pt-2  zaal">
+                <!--zaal-->
+                <p >Zaal:</p>
+                <h3>Muybridge</h3>
+            </div>
+            <div class="col-6 col-md-3 pr-0">
+                <div class="blueborder pt-2">
+                    <!--aantal tickets-->
+                    <p >Aantal tickets:</p>
+                    <h3>2</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-center pb-2">
+            <div class="col-2 col-md-1 pt-2 pb-2 rij">
+                <!--rij-->
+                <p >Rij:</p>
+                <h3>F</h3>
+            </div>
+            <div class="col-2 col-md-1 pt-2 pb-2 zetel mr-3">
+                <!--zetel-->
+                <p >Zetel:</p>
+                <h3>7</h3>
+            </div>
+            <div class="col-2 col-md-1 pt-2  pb-2 rij">
+                <!--rij-->
+                <p >Rij:</p>
+                <h3>F</h3>
+            </div>
+            <div class="col-2 col-md-1 pt-2 pb-2 zetel  mr-2">
+                <!--zetel-->
+                <p >Zetel:</p>
+                <h3>8</h3>
+            </div>
+        </div>
+
+        <div class="row text-center pb-2">
+            <div class="col-6 col-md-4 pt-2 pl-0">
+                <div class="blueborder pt-2">
+                    <!--voornaam+naam-->
+                    <p >Jouw naam:</p>
+                    <h3>{{ fullName }}</h3>
+                </div>
+            </div>
+            <div class="col-6 col-md-5 pt-2 pl-0">
+                <div class="blueborder pt-2">
+                    <!--Jouw email-->
+                    <p >Jouw email:</p>
+                    <h3 class="text-truncate">{{email}}</h3>
+                </div>
+            </div>
+            <div class="col-6 col-md-1 pt-2 pl-0">
+                <div class="blueborder pt-2">
+                    <!--Parking-->
+                    <p>Parking:</p>
+                    <h3 id="haveParking">yes</h3>
+                </div>
+            </div>
+            <div class="col-6 col-md-2 pt-2 px-0">
+                <div class="blueborder pt-2">
+                    <!--aantal tickets-->
+                    <p >Totaalprijs:</p>
+                    <h3>€ 21,50</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row welcome">
+            <div class="col-10 pb-4">
+                <p><strong>Hoe krijg ik toegang tot de zaal?</strong></p>
+                <p><strong>Print</strong> dit reserveringsbewijs thuis af <strong>of</strong> bewaar het op je <strong>smartphone</strong> en ga hiermee rechtstreeks naar de snelkassa.
+                    Na betaling ontvang je het eigenlijk toegangsticket</p>
+            </div>
+            <div class="col-2">
+                <button type="submit" class="btn order-button btn-md mt-5">Druk af!</button>
+            </div>
+        </div>
+
+    </main>
+
+<!-- SCRIPTS -->
+
+</body>
+</html>
