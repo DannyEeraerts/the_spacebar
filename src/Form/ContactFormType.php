@@ -14,6 +14,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class ContactFormType extends AbstractType
 {
@@ -32,6 +33,7 @@ class ContactFormType extends AbstractType
                         'message' => 'Firstname is required ❌'
                     ]),
                     new Length(['min' => 2]),
+                    new Regex(['pattern'=>"/\d/",'match'=>false, 'message'=>"Firstname cannot contain a number ❌"])
                 ],
                 'translation_domain' => 'messages'
             ])
@@ -45,6 +47,7 @@ class ContactFormType extends AbstractType
                         'message' => 'Lastname is required ❌'
                     ]) ,
                     new Length(['min' => 2]),
+                    new Regex(['pattern'=>"/\d/",'match'=>false, 'message'=>"Lastname cannot contain a number ❌"])
                 ],
             ])
             ->add('email', EmailType::class, [

@@ -41,6 +41,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=60)
      * @Assert\NotBlank(message="Firstname is required ❌")
      * @Assert\Length(min=2, minMessage="A firstname is longer than one character ❌")
+     * @Assert\Regex(pattern="/\d/",match=false, message="Firstname cannot contain a number ❌")
      */
     private $firstName;
 
@@ -48,7 +49,9 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=60)
      * @Assert\NotBlank(message="Lastname is required ❌")
      * @Assert\Length(min=2, minMessage="A lastname is longer than one character ❌")
+     * @Assert\Regex(pattern="/\d/",match=false, message="Lastname cannot contain a number ❌")
      */
+
     private $lastName;
 
     /**
