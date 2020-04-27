@@ -44,8 +44,17 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/news/{slug}", name="article_show")
+     * @Route("/news/{slug}")
+     *      defaults={"%locale%":"en"},
+     *     )
+     * @Route("/{_locale}/news/{slug}",
+     *     name="article_show",
+     *     requirements={
+     *         "_locale":"en|nl",
+     *     }
+     * )
      */
+
     public function show($slug, /*MarkdownHelper $markdownHelper, */EntityManagerInterface $em)
     {
         $repository = $em->getRepository(Article::class);

@@ -34,7 +34,7 @@
                     {% if  app.request.pathInfo != '/' and app.request.pathInfo != '/nl' and app.request.pathInfo != '/en' %}
                             {%  set firstPart = app.request.pathInfo |trim('/') | split('/',2)[0] %}
                             {% if firstPart == 'en' %}
-                                {%  set secondPart = app.request.pathInfo |trim('/') | split('/')[1] %}
+                                {%  set secondPart = app.request.pathInfo |trim('/') | split('/',2)[1] %}
                                 {%  set newPath = '/'~ 'nl' ~'/' ~ secondPart %}
                                 <a href= "{{ newPath }}" class="btn btn-dark ml-2" data-toggle="tooltip" title="taal aanpassen" role="button">NL</a>
                             {% else %}
@@ -45,7 +45,7 @@
                     {% if  app.request.pathInfo != '/' and app.request.pathInfo != '/nl' and app.request.pathInfo != '/en' %}
                         {%  set firstPart = app.request.pathInfo |trim('/') | split('/',2)[0] %}
                         {% if firstPart == 'nl' %}
-                            {%  set secondPart = app.request.pathInfo |trim('/') | split('/')[1] %}
+                            {%  set secondPart = app.request.pathInfo |trim('/') | split('/',2)[1] %}
                             {%  set newPath = '/'~ 'en' ~'/' ~ secondPart %}
                             <a href= "{{ newPath }}" class="btn btn-dark ml-2" data-toggle="tooltip" title="taal aanpassen" role="button">EN</a>
                         {% else %}
