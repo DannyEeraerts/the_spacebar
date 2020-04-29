@@ -43,6 +43,7 @@ a, a:hover {
 }
 a:hover{
   color:rgb(65, 197, 255);
+  transform: scale(1.15);
 }
 .navbar-brand{
   line-height: 2rem;
@@ -53,7 +54,7 @@ a:hover{
 .navbar-light:hover .navbar-toggler-icon:hover {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(65, 197, 255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
-nav i, nav a, footer i, h3, .page-link, .dropdown-item{
+nav i, nav a, footer i, h3, .page-link, .dropdown-item, .language{
   color: darkorange;
 }
 .nav-link{
@@ -67,7 +68,7 @@ nav i, nav a, footer i, h3, .page-link, .dropdown-item{
   padding: 0.55rem 0.8rem 0.35rem 0.8rem;
 }
 .btn-dark.dropdown-toggle{
-  color: darkorange!important;
+  color: darkorange;
 }
 .btn.btn-lg {
   padding: 1rem 2rem 0.6rem 2rem;
@@ -208,6 +209,9 @@ footer, .navbar {
 }
 .color {
   color: darkorange;
+}
+.activated{
+  color: whitesmoke;
 }
 .bg-color{
   background-color: rgb(219, 120, 0); ;

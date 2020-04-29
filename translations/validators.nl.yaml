@@ -12,9 +12,12 @@ This is not a valid Password ❌: Dit is geen geldig paswoord! ❌
 The password fields must match ❌: Paswoorden dienen gelijk te zijn! ❌
 You must agree to our terms and privacy policy ❌: Je dient akkoord te gaan met onze algemene voorwaarden en pricacybeleid! ❌
 Get creative and think of a title! ❌: Wees creatief en denk aan een titel ❌
-Content can not be blanc!  ❌: Een leeg article is niet toegestaan! ❌
+Content can not be blanc! ❌: Een leeg artikel is niet toegestaan! ❌
+Translated content can not be blanc! ❌: Een lege vertaling van het artikel is niet toegestaan! ❌
 Please fill in publish date!  ❌: Een publicatiedatum is required!  ❌
 Message is too short. It should have 6 characters or more ❌: Bericht is te kort. Minstens 6 karakters! ❌
 This value is not a valid email address. ❌: Dit is geen geldig email adres! ❌
 Firstname cannot contain a number ❌: Voornaam kan geen nummer bevatten ❌
 Lastname cannot contain a number ❌: Achternaam kan geen nummer bevatten ❌
+The file must be of format .jpg or .png or .jpeg ❌: Enkel volgende bestandsformaten zijn toegestaan .jpg of .png of .jpeg ❌
+This is not a valid email format: Dit is geen geldig email formaat

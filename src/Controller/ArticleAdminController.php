@@ -17,10 +17,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleAdminController extends AbstractController
 {
     /**
-     * @Route("admin/article/new", name="admin_article_new")
+     * @Route("/admin/article/new")
+     *      defaults={"%locale%":"en"},
+     *     )
+     * @Route("/{_locale}/admin/article/new",
+     *     name="admin_article_new",
+     *     requirements={
+     *         "_locale":"en|nl",
+     *     }
+     * )
      * @IsGranted("ROLE_ADMIN_ARTICLE")
      * @throws \Exception
      */
+
     public function new(EntityManagerInterface $em, Request $request)
     {
         /*$article = new Article();
@@ -190,7 +199,7 @@ EOF);
            $em->persist($article);
            $em->flush();
 
-           $this->addFlash('success', 'Article created and written to database');
+           $this->addFlash('success', 'Article created and written to database.');
 
            return $this->redirectToRoute('admin_article_list');
         }
@@ -207,9 +216,18 @@ EOF);
     }
 
     /**
-     * @Route("/admin/article/{id}/edit", name="admin_article_edit")
-     * @IsGranted("MANAGE", subject="article")
+     * @Route("/admin/article/{id}/edit")
+     *      defaults={"%locale%":"en"},
+     *     )
+     * @Route("/{_locale}/admin/article/{id}/edit",
+     *     name="admin_article_edit",
+     *     requirements={
+     *         "_locale":"en|nl",
+     *     }
+     * )
+     * @IsGranted("MANAGE",subject="article" )
      */
+
     public function edit(Article $article, Request $request, EntityManagerInterface $em)
     {
         $form = $this->createForm(ArticleFormType::class, $article);
@@ -222,7 +240,7 @@ EOF);
             $em->persist($article);
             $em->flush();
 
-            $this->addFlash('success', 'Article updated and written to database');
+            $this->addFlash('success', 'Article updated and written to database.');
 
             return $this->redirectToRoute('admin_article_edit', ['id' => $article->getId()]);
         }
@@ -233,8 +251,17 @@ EOF);
     }
 
     /**
-     * @Route("/admin/article", name="admin_article_list")
+     * @Route("/admin/article")
+     *      defaults={"%locale%":"en"},
+     *     )
+     * @Route("/{_locale}/admin/article",
+     *     name="admin_article_list",
+     *     requirements={
+     *         "_locale":"en|nl",
+     *     }
+     * )
      */
+
     public function list(ArticleRepository $articleRepo)
     {
         $articles = $articleRepo->findAll();

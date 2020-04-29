@@ -12,11 +12,11 @@
 <div class="container">
     <div class="row d-flex justify-content-center mt-4 ">
         <div class="col-10 col-lg-8 px-0">
-            <h1 class="underline_magic p-3 mb-2 text-center">Launch 🚀 a new article</h1>
+            <h1 class="underline_magic p-3 mb-2 text-center">{% trans %}Launch{% endtrans %} 🚀 {% trans %}a new article{% endtrans %}</h1>
         </div>
     </div>
     {{ include('article_admin/_form.html.twig',
-        {button_text: 'create'})
+        {button_text: 'Create'})
     }}
 </div>
 {% endblock %}

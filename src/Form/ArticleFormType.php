@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,10 +24,18 @@ class ArticleFormType extends AbstractType
                 'label' => 'Content *',
                 'attr' => [
                     'placeholder' => 'Content of new article',
-                    'rows' => 6
+                    'rows' => 4
+                ]
+            ])
+            ->add('contentNl', TextareaType::class, [
+                'label' => 'Translated content *',
+                'attr' => [
+                    'placeholder' => 'Translated content of new article',
+                    'rows' => 4
                 ]
             ])
             ->add('publishedAt', DateTimeType::class, [
+                'label' => 'Published at',
                 'widget' => 'single_text',
                 'html5' => false,
                 'attr' => [
@@ -36,6 +45,7 @@ class ArticleFormType extends AbstractType
                 'date_format' => 'Y-mm-d H:i:s',
             ])
             ->add('imageFileName', null,[
+                'label' => 'Image file name',
                 'attr'=> [
                     'placeholder' => 'Image File name (.png or .jpg)'
                 ]

@@ -22,8 +22,12 @@
                 </span>
                 <span class="pl-2 article-details">
                     {{ article.publishedAt ? article.publishedAt | ago  : 'unpublished'}}
-                    on
-                    {{ article.publishedAt ? article.publishedAt | date('D d/m/Y')  : 'unpublished'}}
+                    {% trans %}on{% endtrans %}
+                    {% if (app.request.locale  == 'nl') %}
+                        {{ article.publishedAt ? article.publishedAt | format_datetime('medium', 'none', locale='nl')  : 'unpublished'}}
+                    {% else %}
+                        {{ article.publishedAt ? article.publishedAt | format_datetime('medium', 'none', locale='en')  : 'unpublished'}}
+                    {% endif %}
                 </span>
                 <span class="pl-2 article-details"> <span class="js-like-article-count"> {{ article.heartCount }}</span>
                     <a href="#" class="ml-1 fa fa-heart-o like-article js-like-article" data-link = {{ article.slug }}></a>
@@ -32,7 +36,7 @@
                     tags:&nbsp
                     {% for tag in article.tags %}
                         <span class="badge badge-secondary">
-                            {{ tag.name }}
+                            {{ tag.name|trans }}
                         </span>
                     {% endfor %}
                 </p>
@@ -43,8 +47,11 @@
 
         <div class="row">
             <div class="col-12">
-
-                {{ article.content|trans|raw }}
+                {% if (app.request.locale == 'en')%}
+                    {{ article.content|raw }}
+                {% else %}
+                    {{ article.contentNl|raw }}
+                {% endif %}
 
                 {#<h4>Current Counts:</h4>
                 <ul>
@@ -56,7 +63,7 @@
                 {{ articleParagraph2|raw }}#}
             </div>
             <div class="col-12 mt-3">
-                <p class="share-icons mb-5"><span class="pr-1">Share:</span>
+                <p class="share-icons mb-5"><span class="pr-1">{% trans %}Share{% endtrans %}:</span>
                     <i class="pr-1 fa fa-facebook-square"></i><i class="pr-1 fa fa-twitter-square"></i><i
                             class="pr-1 fa fa-reddit-square"></i><i class="pr-1 fa fa-share-alt-square"></i>
                 </p>
@@ -67,7 +74,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h3><i class="pr-3 fa fa-comment"></i>Comments ({{ article.comments|length }})</h3>
+                <h3><i class="pr-3 fa fa-comment"></i>{%trans%}Comments{% endtrans %} ({{ article.comments|length }})</h3>
             </div>
         </div>
 
@@ -82,7 +89,7 @@
                                   id="articleText"
                                   rows="1"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-dark">Comment</button>
+                    <button type="submit" class="btn btn-dark">{% trans %}Comment{% endtrans %}</button>
                 </div>
             </div>
         </div>
@@ -95,8 +102,8 @@
                     <span class="commenter-name">{{ comment.authorName }}</span>
                     <small>{{ comment.createdAt|ago }}</small>
                     <br>
-                    {{ comment.content }}
-                    <p><a href="#">Reply</a></p>
+                    {{ comment.content|trans }}
+                    <p><a href="#">{% trans %}Reply{% endtrans %}</a></p>
             </div>
         </div>
         {% endfor %}

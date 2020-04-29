@@ -37,13 +37,19 @@ class Article
     private $slug;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     * @Assert\NotBlank(message="Content can not be blanc!  ❌")
+     * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Content can not be blanc! ❌")
      */
     private $content;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Translated content can not be blanc! ❌")
+     */
+    private $contentNl;
+
+    /**
+     * @ORM\Column(type="datetime")
      * @Assert\NotBlank(message="Please fill in publish date!  ❌")
      */
     private $publishedAt;
@@ -74,6 +80,7 @@ class Article
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
+
 
     public function __construct()
     {
@@ -118,6 +125,18 @@ class Article
     public function setContent(?string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getContentNl(): ?string
+    {
+        return $this->contentNl;
+    }
+
+    public function setContentNl(?string $content_nl): self
+    {
+        $this->contentNl = $content_nl;
 
         return $this;
     }
@@ -206,6 +225,7 @@ class Article
         return $this;
     }
 
+
     /**
      * @return Collection|Tag[]
      */
@@ -264,5 +284,7 @@ class Article
                 ->addViolation();
         }
     }
+
+
 
 }

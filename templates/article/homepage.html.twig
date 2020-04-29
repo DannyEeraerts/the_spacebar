@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row mt-4">
             <div class="col-12 text-center">
-                <h4>{% trans %}Newsite which spread light on dark matters{% endtrans %}.:</h4>
+                <h4>{% trans %}Newsite which spread light on dark matters{% endtrans %}:</h4>
                 <h1>{% trans %}The Infinite Space Bar{% endtrans %}</h1>
             </div>
         </div>
@@ -19,14 +19,14 @@
                 <a href="{{ path('article_show',{slug:'The-9-best-meteor-showers-to-watch-in-2020-370'}) }}">
                     <div class="mb-4 pb-3 border">
                         <img class="img-fluid mb-3 border-bottom" src="{{ asset('images/meteors_shower.jpg') }}" alt="meteor shower">
-                        <h3 class="text-center mt-2">The <span class="color">9 best meteor showers</span> to watch <br>in 2020</h3>
+                        <h3 class="text-center mt-2">{% trans %}The <span class="color">9 best meteor showers</span> to watch <br>in 2020{% endtrans %}</h3>
                     </div>
                 </a>
 
                 <a href="{{ path('article_show',{slug:'Astroids-Comets-And-Planets-663'}) }}">
                     <div class="mb-4 pb-3 border">
                         <img class="img-fluid mb-3 border-bottom" src=" {{ asset('images/416_16_psyche_main.jpg') }} " alt="astroid 416">
-                        <h3 class="text-center mt-2"><span class="color">Astroids</span>, <span class="color">Comets</span> and <span class="color">Planets</span></h3>
+                        <h3 class="text-center mt-2">{% trans %}<span class="color">Astroids</span>, <span class="color">Comets</span> and <span class="color">Planets</span>{% endtrans %}</h3>
                     </div>
                 </a>
                 <!-- Supporting Articles -->
@@ -51,17 +51,22 @@
                             <div class="col-8">
                                 <a href="{{ path('article_show', {slug: article.slug}) }}">
                                     <div class="article-title align-middle">
-                                        <p> <span class="color">{{ article.title }} </span><br><span>{{ article.comments|length }} comments</span></p>
+                                        <p> <span class="color">{{ article.title|trans }} </span><br><span>{{ article.comments|length }} {% trans %}comments{% endtrans %}</span></p>
                                         <div class="mt-2" style = "color: white">
-                                            <span class="align-left "><img class="article-author-img rounded-circle" src="{{ asset('images/astronaut-profile.png') }}" alt="{{article.author}}"> {{article.author}} </span>
-                                            <span class="pl-5 article-details text-right"> {{ article.publishedAt ? article.publishedAt | ago  : 'unpublished'}}
-                                            on
-                                            {{ article.publishedAt ? article.publishedAt | date('D d/m/Y')  : 'unpublished'}}</span>
+                                            <span class=""><img class="article-author-img rounded-circle" src="{{ asset('images/astronaut-profile.png') }}" alt="{{article.author}}"> {{article.author}} </span>
+                                            <p class="article-details "> {{ article.publishedAt ? article.publishedAt | ago  : 'unpublished'}}
+                                            {% trans %}on{% endtrans %}
+                                            {% if (app.request.locale  == 'nl') %}
+                                                {{ article.publishedAt ? article.publishedAt | format_datetime('medium', 'none', locale='nl')  : 'unpublished'}}
+                                            </p>
+                                            {% else %}
+                                                {{ article.publishedAt ? article.publishedAt | format_datetime('medium', 'none', locale='en')  : 'unpublished'}}</span>
+                                            {% endif %}
                                             <p class="article-details mt-1">
-                                                tags:&nbsp
+                                                {% trans %}tags{% endtrans %}:&nbsp
                                                 {% for tag in article.tags %}
                                                     <span class="badge badge-secondary">
-                                                        {{ tag.name }}
+                                                        {{ tag.name|trans }}
                                                     </span>
                                                 {% endfor %}
                                             </p>

@@ -82,7 +82,7 @@ class ContactController extends AbstractController
 
             $mailer->send($email);
 
-            $this->addFlash('success', 'Your contactform is successull send');
+            $this->addFlash('success', 'Your contactform is successull send.');
 
             return $this->redirectToRoute('app_contact');
             }

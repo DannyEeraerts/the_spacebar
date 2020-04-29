@@ -38,7 +38,7 @@ class ContactFormType extends AbstractType
                 'translation_domain' => 'messages'
             ])
             ->add('Lastname',TextType::class,[
-                'label' => 'LastName *',
+                'label' => 'Lastname *',
                 'attr' =>[
                     'placeholder' => 'Lastname (min 2 letters)'
                 ],

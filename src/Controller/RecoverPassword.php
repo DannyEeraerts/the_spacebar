@@ -14,9 +14,18 @@ class RecoverPassword extends AbstractController
 {
 
     /**
-     * @Route("/recoverpassword", name="app_recover_password")
-     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
+     * @Route("/recoverpassword")
+     *      defaults={"%locale%":"en"},
+     *     )
+     * @Route("/{_locale}/recoverpassword",
+     *     name="app_recover_password",
+     *     requirements={
+     *         "_locale":"en|nl",
+     *     }
+     * )
+     * * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
+
     public function reset_password_mail(Request $request, UserRepository $userRepository, CsrfTokenManagerInterface $csrfTokenManager, MailerInterface $mailer){
 
         $this->userRepository = $userRepository;
@@ -62,13 +71,19 @@ class RecoverPassword extends AbstractController
                 $year = new \DateTime();
                 $year->format('Y');
 
-
+                $locale = $request->getLocale();
+                if ($locale === "en"){
+                    $subject = "Reset password for the Space Bar!";
+                }
+                else {
+                    $subject = "Reset paswoord voor de Ruimte Bar!";
+                }
 
                 // Mail
                 $email = (new TemplatedEmail())
                     ->from('danny.eeraerts@proximus')
                     ->to($user->getEmail())
-                    ->subject('Reset password for the Space Bar!')
+                    ->subject($subject)
                     ->htmlTemplate('Email/reset_email.html.twig')
                     ->context([
                         'firstName' =>$firstName,
@@ -80,18 +95,17 @@ class RecoverPassword extends AbstractController
 
                 $mailer->send($email);
 
-
-                $this->addFlash('success', 'Consult your mail. There is an email with instructions on how to restore
-                    your password');
-
+                $this->addFlash(
+                    'success',
+                    'Consult your mail. There is an email with instructions on how to reset your password.');
                 return $this->redirectToRoute('app_homepage');
 
             }
-            // eerst real reset maken.
+            // first create real reset
             else {
                 $this->addFlash(
                     'notice',
-                    'Dit e-mailadres komt niet voor in ons systeem. Maak een nieuwe account');
+                    'This email address does not exist in our system. Create a new account.');
                 return $this->redirectToRoute('app_recover_password');
             }
         }

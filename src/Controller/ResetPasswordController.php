@@ -15,7 +15,15 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 class ResetPasswordController extends AbstractController
 {
     /**
-     * @Route("/reset", name="app_reset")
+     * @Route("/reset")
+     *      defaults={"%locale%":"en"},
+     *     )
+     * @Route("{_locale}/reset",
+     *     name="app_reset",
+     *     requirements={
+     *         "_locale":"en|nl",
+     *     }
+     * )
      */
 
     function resetPassword(Request $request, UserRepository $userRepository, UserPasswordEncoderInterface $encoder, CsrfTokenManagerInterface $csrfTokenManager, EntityManagerInterface $em)
@@ -34,7 +42,7 @@ class ResetPasswordController extends AbstractController
             } else {
                 $this->addFlash(
                     'notice',
-                    'You are not authorized to reset the password');
+                    'You are not authorized to reset the password.');
                 return $this->redirectToRoute('app_error403');
             }
         }
@@ -59,7 +67,7 @@ class ResetPasswordController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Jouw paswoord is succesvol gereset, u kan nu inloggen met het nieuw paswoord.');
+                'Your password has been successfully reset, you can now log in with the new password.');
 
             return $this->redirectToRoute('app_login');
         }

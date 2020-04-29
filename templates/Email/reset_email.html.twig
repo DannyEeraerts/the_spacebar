@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Welcome to the Space Bar!</title>
+    <title>{% trans %}Welcome to the Space Bar{% endtrans %}!</title>
     <style>
         body {
             margin: 0;
@@ -80,31 +80,27 @@
             </a>
         </div>
         <div class="content">
-            <h1 class="text-center">Dear {{ firstName }}!</h1>
+            <h1 class="text-center">{% trans %}Dear{% endtrans %} {{ firstName }}!</h1>
             <p class="block">
-                You recently requested to reset your password for your SpaceBar account.
-                Use the button below to reset it. This password reset is only valid fill {{ expire|date("d M Y h:s") }}.
+                {% trans %}You recently requested to reset your password for your SpaceBar account.{% endtrans %}
+                {% trans %}Use the button below to reset it. This password reset is only valid till{% endtrans %} {{ expire|date("d M Y h:s") }}.
             </p>
 
             <p class="block text-center">
-                <a href="{{ url('app_reset',{'token':token}) }}" class="btn">Reset your password</a>
+                <a href="{{ url('app_reset',{'token':token}) }}" class="btn">{% trans %}Reset your password{% endtrans %}</a>
             </p>
             <p class="block">
-                If you did not request a password reset, please ignore this email or
-                <a href="{{ url('app_contact') }}" >contact support </a>if you have questions.
+                {% trans %}If you did not request a password reset, please ignore this email or{% endtrans %}
+                <a href="{{ url('app_contact') }}" >{% trans %}contact support{% endtrans %} </a> {% trans %}if you have questions{% endtrans %}.
             <p class="block">
-                Thanks,<br/><br/>
-                Your friendly <em>SpaceBar Team</em>
+                {% trans %}Thanks{% endtrans %},<br/><br/>
+                {% trans %}The{% endtrans %} <em>{% trans %}SpaceBar Team{% endtrans %}</em>
             </p>
 
         </div>
         <div class="footer">
-            <br/>
-            <small class="block">If you received this email but didn't register for an Space Bar Account,
-                something's gone haywire. Click here to de-activate and close this account</small>
-            <br/>
             <div class="block bottom text-center">
-                <p>Sent with ❤️ from the friendly folks at The Space Bar</p>
+                <p>{% trans %}Sent with ❤️ from the friendly folks at The Space Bar{% endtrans %}</p>
                 <p>© <span>ED</span> Web&PhotoStudio {{ year|date("Y") }}</p>
             </div>
         </div>

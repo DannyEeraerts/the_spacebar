@@ -19,42 +19,39 @@
                     <a href="{{ path('admin_article_list') }}" class="btn btn-dark ml-2" data-toggle="tooltip" title="{% trans %}content{% endtrans %}" role="button"><i class="fas fa-newspaper"></i></a>
                     <a href="#" id="c_contrast" class="btn btn-dark ml-2" data-toggle="tooltip" title="contrast" role="button"><i class="fas fa-adjust"></i></a>
                     <a href="#" id="f_size" class="btn btn-dark ml-2" data-toggle="tooltip" title="{% trans %}fontsize{% endtrans %}" role="button"><i class="fas fa-text-height"></i></a>
-                    {#<a>pathinfo: {{ app.request.pathInfo }}</a>
-
-                    <p> indien engels wijzigen naar nederlands: {{ app.request.pathInfo|replace({'en': "nl"}) }}</p>
-
-                    <p> indien nederlands wijzigen naar engels: {{ app.request.pathInfo|replace({'nl': "en"}) }}</p>#}
-
                     {% if  app.request.pathInfo == '/' or app.request.pathInfo == '/en' or app.request.pathInfo == '/nl' %}
-                        <a href="{{ path('app_homepage', {'_locale':'nl'}) }}" class="btn btn-dark ml-2" data-toggle="tooltip" title="taal aanpassen" role="button">NL</a>
+                        <a href="{{ path('app_homepage', {'_locale':'nl'}) }}" class="btn btn-dark ml-2 language {% if app.request.locale == 'nl'%} activated {% endif %}" data-toggle="tooltip" title="taal aanpassen" role="button">NL</a>
                     {% endif %}
                     {% if  app.request.pathInfo == '/' or app.request.pathInfo == '/en' or app.request.pathInfo == '/nl' %}
-                        <a href="{{ path('app_homepage', {'_locale':'en'}) }}"  class="btn btn-dark ml-2" data-toggle="tooltip" title="change language" role="button">EN</a>
+                        <a href="{{ path('app_homepage', {'_locale':'en'}) }}"  class="btn btn-dark ml-2 language{% if app.request.locale =='en'%} activated {% endif %}" data-toggle="tooltip" title="change language" role="button">EN</a>
                     {% endif %}
                     {% if  app.request.pathInfo != '/' and app.request.pathInfo != '/nl' and app.request.pathInfo != '/en' %}
                             {%  set firstPart = app.request.pathInfo |trim('/') | split('/',2)[0] %}
                             {% if firstPart == 'en' %}
                                 {%  set secondPart = app.request.pathInfo |trim('/') | split('/',2)[1] %}
                                 {%  set newPath = '/'~ 'nl' ~'/' ~ secondPart %}
-                                <a href= "{{ newPath }}" class="btn btn-dark ml-2" data-toggle="tooltip" title="taal aanpassen" role="button">NL</a>
+                                <a href= "{{ newPath }}" class="btn btn-dark ml-2 language {% if firstPart == 'nl'%} activated {% endif %}" data-toggle="tooltip" title="taal aanpassen" role="button">NL</a>
                             {% else %}
-                                {%  set newPath = '/nl'~ app.request.pathInfo  %}
-                                <a href= "{{ newPath }}" class="btn btn-dark ml-2" data-toggle="tooltip" title="taal aanpassen" role="button">NL</a>
+                                {#{%  set newPath = '/nl'~ app.request.pathInfo  %}#}
+                                <a href= "{{ app.request.pathInfo }}" class="btn btn-dark ml-2 language {% if firstPart != 'en'%} activated {% endif %}" data-toggle="tooltip" title="taal aanpassen" role="button">NL</a>
                             {% endif %}
                     {% endif %}
                     {% if  app.request.pathInfo != '/' and app.request.pathInfo != '/nl' and app.request.pathInfo != '/en' %}
-                        {%  set firstPart = app.request.pathInfo |trim('/') | split('/',2)[0] %}
+                        {% set firstPart = app.request.pathInfo |trim('/') | split('/',2)[0] %}
                         {% if firstPart == 'nl' %}
                             {%  set secondPart = app.request.pathInfo |trim('/') | split('/',2)[1] %}
                             {%  set newPath = '/'~ 'en' ~'/' ~ secondPart %}
-                            <a href= "{{ newPath }}" class="btn btn-dark ml-2" data-toggle="tooltip" title="taal aanpassen" role="button">EN</a>
+                            <a href= "{{ newPath }}" class="btn btn-dark ml-2 language {% if firstPart == 'en'%} activated {% endif %}" data-toggle="tooltip" title="taal aanpassen" role="button">EN</a>
                         {% else %}
-                            {%  set newPath = '/en'~ app.request.pathInfo  %}
-                            <a href= "{{ app.request.pathInfo }}" class="btn btn-dark ml-2" data-toggle="tooltip" title="taal aanpassen" role="button">EN</a>
+                            {#{%  set newPath = '/en'~ app.request.pathInfo  %}#}
+                            <a href= "{{ app.request.pathInfo }}" class="btn btn-dark ml-2 language {% if firstPart != 'nl'%} activated {% endif %}" data-toggle="tooltip" title="taal aanpassen" role="button">EN</a>
                         {% endif %}
                         {#<a href="{{ app.request.pathInfo|replace({'nl': "en"}) }}" class="btn btn-dark ml-2" data-toggle="tooltip" title="taal aanpassen" role="button">EN</a>#}
                     {% endif %}
                 </nav>
+                {#<pre>
+                    {{ dump(app.request.geturi |trim('/') | split('/',2)[1] )}}
+                </pre>#}
             </section>
             <section class = "mainbar">
                 <nav class="navbar navbar-expand-lg navbar-light px-5 pb-3">
@@ -116,7 +113,7 @@
             <div class ="text-center">
                 {% for message in app.flashes('notice') %}
                     <div class="flash-notice">
-                        {{ message|trans }}
+                       {{ message|trans }}
                     </div>
                 {% endfor %}
             </div>
@@ -139,6 +136,7 @@
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
             <script src="{{ asset("js/font_size.js") }}"></script>
+            <script src="{{ asset("js/active_language.js") }}"></script>
         {% endblock %}
         </body>
 </html>
