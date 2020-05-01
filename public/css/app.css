@@ -41,7 +41,7 @@ main {
 a, a:hover {
   text-decoration: none;
 }
-a:hover{
+.transform:hover, a:hover{
   color:rgb(65, 197, 255);
   transform: scale(1.15);
 }
@@ -245,6 +245,9 @@ table.table-bordered > thead > tr > th{
 .table-dark td {
   border-color: rgba(200, 200, 200, 0.75);
 }
+.note {
+  color: rgba(200, 200, 200, 0.75);
+}
 
 /* comment manager page */
 .underline_magic {
@@ -269,20 +272,23 @@ table.table-bordered > thead > tr > th{
   border-color: darkorange;
 }
 
-main ul li::before {
-  display: none;
+.hide, main ul li::before {
+  display: none!important;
 }
 ul .pagination{
   border-radius: unset;
 }
-input.form-control, textarea.form-control{
-  border: 1px solid darkorange;
+input.form-control, textarea.form-control, .cookie{
+  border: 2px solid darkorange;
   border-radius: 0;
   color: whitesmoke;
   font-size: 0.85rem;
 }
 nav form input.form-control:hover{
   border: 1px solid rgb(65, 197, 255);
+}
+.cookie p{
+  margin: 0;
 }
 
 

@@ -182,8 +182,6 @@ EOF);
 
         $form->handleRequest($request);
 
-
-
         if ($form->isSubmitted() && $form->isValid()) {
 
            $article = $form->getData();
@@ -268,5 +266,12 @@ EOF);
         return $this->render('article_admin/list.html.twig', [
             'articles' => $articles,
         ]);
+    }
+
+    /**
+     * @Route("/admin/upload/test", name="upload_test")
+     */
+    public function temporaryUpLoadAction(Request $request){
+        dd($request->files->get('image'));
     }
 }

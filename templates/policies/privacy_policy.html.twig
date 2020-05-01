@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Privacy Privacy
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row mt-4 mb-3 d-flex align-items-center">
+            <div class="col-12">
+                <h1 class="title mb-4 text-center">{% trans %}Privacy Policy{% endtrans %}</h1>
+                <p class="color"><i>{% trans %}This document describes the privacy policy of The Space Bar. It affects all data gathered and processed by The Space Bar. This policy is a derivative of the GDPR, and is to be applied to The Space Bar activities, and The Space Bar data processing and data and information systems.{% endtrans %}</i><p>
+                <p><i>{% trans %}latest update{% endtrans %}: 28-04-2020</i></p>
+                
+                <h4 class="mb-3">{% trans %}General Data Protection Regulation (GDPR){% endtrans %}:</h4>
+                <p>{% trans %}The GDPR is EU Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data. It repeals Directive 95/46/EC. The GDPR comes in force on 25 May, 2018. More information can be found on the EC GDPR site or on the site of the data protection authority (DPA) for Belgium.{% endtrans %}</p>
+                
+                <h4 class="mb-3">The Space Bar as data owner and processor</h4>
+                <p>{% trans %}The Space Bar gathers personal data via several data and information systems and for a range of The Space Bar activities, such as the organisation of events. The Spacebar is the owner and processor of this data and does not pass on non public data on to third parties. All data gathered and processed by The Space Bar is subject to the EU General Data Protection Regulation (GDPR), which aims to protect the privacy of all EU inhabitants.{% endtrans %}</p>
+                <p>{% trans %}You can contact The Space Bar through e-mail at {% endtrans %}<a href="mailto:info@thespacebar.be"> info@thespacebar.be</a>; {%trans %}at the address Langemuntstraat, 9240 Zele, Belgium; or by phone; +32 (0)52 45 15 21. For questions concerning private data and how The Spacebar makes use of it, please contact {% endtrans %} <a href="mailto:privacy_policy.html.twig">privacy@thespacebar.be</a>.</p>
+                <p>{% trans %}Complaints concerning the privacy policy of The Space Bar, or concerning unlawful data processing by The Space Bar, can be addressed to the Data Protection Authority (DPA) for Belgium {% endtrans %}( <a href="https://www.dataprotectionauthority.be" target="_blank">www.dataprotectionauthority.be</a> ).{% trans %} If there is a data breach, The Spacebar is bound to inform the DPA within 72 hours, and affected users - if identifiable - will also be notified.{% endtrans %}</p>
+                
+                <h4 class="mb-3">{% trans %}Your rights as a data subject{% endtrans %}</h4>
+                <p>{% trans %}A data subject is the natural person for whom personal data is processed. Each person has the right to be informed on what personal data is being processed and to have access to their personal data. {% endtrans %}</p>
+                <p>{% trans %}You have the right; to have your personal data corrected; to request a restriction or an end to processing of your data; and to be forgotten, which means the erasure of your personal data. Note that not all rights are absolute. The Spacebar can have compelling legitimate grounds that outweigh the interests and rights of the objector (accountancy, juridical reasons,...). When a request is made, The Spacebar may demand extra information to confirm identity. Note that the GDPR stipulates that each request made must be logged.{% endtrans %}</p>
+                
+                <h4 class="mb-3">{% trans %}Legal grounds for data processing{% endtrans %}</h4>
+                <p>{% trans %}There are several legal grounds for data processing. The most common is prior consent, which can be withdrawn at any time. A processing of data can be within agreement. Some of the services offered by The Spacebar require a personal account, and the processing of this data is limited to the linked services and is within agreement. The Space Bar has the legal obligation to process personal data for accountancy purposes, and has to keep this data for as long as is mandatory.{% endtrans %}</p>
+                
+                <h4 class="mb-3">{% trans %}Data processing by The Space Bar{% endtrans %}</h4>
+                <p>{% trans %}The Space Bar privacy policy lists all data and information systems which process personal data. For some of the systems a more specific disclaimer is made, and direct contact details are given in the disclaimer.  Questions can also be directed to {% endtrans %} <a href="mailto:privacy@thespacebar.be">privacy@thespacebar.be</a>.</p>
+                <p>{% trans %}The basic principles of the GDPR is to keep the processing of personal data to a minimum - data privacy by design and by default - and to think about how to protect data from the beginning - data protection by design. To this end The Space Bar places its systems and data processing under scrutiny, and deletes data or renders it anonymous where possible.{% endtrans %}</p>
+               
+                <h4 class="mb-3">{% trans %}The Space Bar services requiring personal data{% endtrans %}</h4>
+                <p>{% trans %}For some of the services and activities of The Space Bar, an account and / or processing of personal data is necessary. By entering your personal data and / or creating an account you agree to the data processing. This data is kept for as long as the agreement lasts, and at least as long as is required for legal purposes (e.g. accountancy). For purposes concerning proof in juridical disputes, The Space Bar may store personal data up to 10 years after the fact, which is the maximum legal term for placing personal claims.{% endtrans %}</p>
+                
+                <h4>{% trans %}Changes to the Privacy Policy{% endtrans %}</h4>
+                <p>{% trans %}Please note that the The Space Bar Privacy Policy is reviewed periodically. The Space Bar reserves the right to modify its Privacy Policy at any time without notice. Any changes to the Privacy Policy will be posted on this page and will become effective on the date of posting. We encourage you to periodically review this page for the latest information on our privacy practices.{% endtrans %}</p>
+                
+                <h4>{% trans %}Recourse{% endtrans %}</h4>
+                <p>{% trans %}Any comments, complaints, or questions concerning this policy, or complaints or objections about our use of your personal information, should be addressed by emailing your comments to {% endtrans %} <a href="mailto:privacy@thespacebar.be"> privacy@thespacebar.be</a>. </p>
+            </div>
+        </div>
+
+    </div>
+{% endblock%}

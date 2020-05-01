@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Cookie Privacy
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row mt-4 mb-3 d-flex align-items-center">
+        <div class="col-12">
+            <h1 class="title mb-4 text-center">{% trans %}Cookie Policy{% endtrans %}</h1>
+            <h4>{% trans %}What are Cookies?{% endtrans %}</h4>
+            <p>{% trans %}Cookies are small files which are stored on a user’s computer. They are designed to
+                hold a modest amount of data specific to a particular client and website, and can be
+                accessed either by the web server or the client computer. This allows the server to
+                deliver a page tailored to a particular user, or the page itself can contain some
+                script which is aware of the data in the cookie and so is able to carry information
+                from one visit to the website (or related site) to the next.{% endtrans %}<p>
+            <h4 class="mb-3">{% trans %}The different types of Cookies{% endtrans %}:</h4>
+            <p class="color">{% trans %}STATISTICAL {% endtrans %}</p>
+            <p>{% trans %}Statistical cookies collect informations about your use of our website, for example; which are the pages you visit, and which are the errors that you may encounter. These cookies are completely anonymous and are used only to help us to improve the functioning of our website and understand the interests of our users. We use statistical cookies for … Having informations about the most visited pages of the site; identify site errors to have an effective maintenance and updating of the website.Cookies we have defined as “statistical” will NOT be used for … Gather informations that could be used to advertise products or services to you on other websites. They’ll not be sold or transferred to third parts for purposes other than those listed above.{% endtrans %}</p>
+            <p class="color">{% trans %}BEHAVIOURAL{% endtrans %}</p>
+            <p>{% trans %}Behavioural cookies are used to collect data on your surfing habits and your preferences, for carrying out market research or sales at a distance, we speak in such cases of behavioral advertising and targeted advertising. These treatments are evaluated very carefully by the European and Belgian legislator, which imposed very restrictive rules. The ‘EU decided to impose on the Internet’s operators to request user’s prior before it can use behavioral cookies to make advertising or otherwise for other purposes than those strictly necessary to provide the service requested by the individual. If you don’t  want to receive these types of cookies on the website, you can use the opt-out provided in the settings page of cookies.{% endtrans %}</p>
+            <p class="color">{% trans %}FUNCTIONAL{% endtrans %}</p>
+            <p>{% trans %}Functional cookies are used to provide services or to remember settings to improve your visit and experience on our site.{% endtrans %}</p>
+            <p class="color">{% trans %}SESSION COOKIES AND PERMANENT{% endtrans %}</p>
+            <p>{% trans %}The distinction between session cookies and permanent can be carried out for their persistence on the user’s terminal. There are cookies that are deleted automatically at the end of each navigation; these cookies are called session cookies. If they have a longer life, they’re called persistent cookies (such as your personal preferences set by the user).{% endtrans %}</p>
+            <p class="color">{% trans %}ESSENTIAL{% endtrans %}</p>
+            <p>{% trans %}Essential cookies are necessary to allow proper functionality required. Such as e-commerce sites don’t work without the use of cookies, so your experience on the site would be conditional and also the ability to add items to your cart and proceed through checkout.Essential cookies for the use of a website are exempt under the EU directive.{% endtrans %}</p>
+            <h4>{% trans %}Why we use Cookies?{% endtrans %}</h4>
+            <p>{% trans %}The Space Bar may use cookies for several reasons. In some parts of our website cookies are essential.{% endtrans %}</p>
+            <p>{% trans %}Cookies also help us to provide a better experience and richer, for example, for something that you find interesting; you could put “Like” on Facebook, or make a twit on Twitter; cookies facilitate these operations.{% endtrans %}</p>
+            <p>{% trans %}Instead of a very long list, we ranked the most commonly used cookies based on their type of use, and we classify them as; basic, functional, statistical, behavioral, third part, session and permanent. Below, different types of cookies are analyzed in detail.{% endtrans %}</p>
+            <h4>{% trans %}How can I check Cookies?{% endtrans %}</h4>
+            <p> {% trans %}The section “Help” of your browser should be able to help you with managing settings of cookies. If you don’t wish to receive cookies, you can make a change to your browser to notify you when cookies are sent. You can also delete cookies that you have already saved, through your browser settings. You can choose to accept cookies that are set by our site, in the cookie settings page. Please note that most of our website, works without the use of cookies but if you choose to disable some of them, you’ll lose features and functionality.{% endtrans %}
+            </p>
+            <h4>{% trans %}Which Cookies The Space Bar uses?{% endtrans %}</h4>
+            <table class="table table-bordered table-dark table-hover mt-3">
+                <thead>
+                <tr>
+                    <th class="text-center" scope="col">Cookie</th>
+                    <th class="text-center" scope="col">Type</th>
+                    <th class="text-center" scope="col">{% trans %}Duration{% endtrans %}</th>
+                    <th class="text-center" scope="col">{% trans %}Description{% endtrans %}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="text-center px-2">{% trans %}Cookie concent{% endtrans %}</td>
+                    <td class="text-cengter px-2"></td>
+                    <td class="text-center px-2"></td>
+                    <td class="text-left px-2">{% trans %}At the top of every page of this site you will see a message alerting you of our privacy policy and cookies policy. If you saw this message once, you probably don't want to see it again. We use a cookie to remember this setting. NOTE User data remains anonymous.{% endtrans %}</td>
+                </tr>
+                <tr>
+                    <td class="text-center px-2">Google Analytics</td>
+                    <td class="text-center px-2"></td>
+                    <td class="text-center px-2"></td>
+                    <td class="text-left pr-5">{% trans %}To understand how people use our site, and to explore further on our problems, we use Google Analytics. Most web sites use a kind of analysis program such as this. The data collected help us to see things as how many people visit our site, the country where they come from, how many pages they visited, how quickly our site loaded, and so on. All data collected is completely anonymous.{% endtrans %}</td>
+                </tr>
+                </tbody>
+            </table>
+            <h4>{% trans %}Delete Cookies{% endtrans %}</h4>
+            <p class="mb-1">{% trans %}If you want to delete The Space Bar cookies click the button below DELETE COOKIES.{% endtrans %}</p>
+        </div>
+    </div>
+    <div class="row d-flex align-items-center">
+        <div class="col-9">
+            <p>
+            <span class="color">{% trans %}NOTE{% endtrans %}:</span>
+            <small><span class="note">{% trans %}This action will delete the cookies on this site. If you feel that nothinghappened – what really happened is that the cookies have been deleted, and when you reload the page, bar cookie will be shown again. The duration must be considered subjective, because the user can delete the cookies on this site or other portals at any time, using specific settings of your browser for example Google Chrome, Safari, Firefox, Edge and so on.{% endtrans %}</span></small>
+            </p>
+        </div>
+        <div class="col-3">
+            <a href="#" id="cookielawinfo-cookie-delete" class="btn btn-dark">{% trans %}DELETE COOKIES{% endtrans %}</a>
+        </div>
+    </div>
+</div>
+{% endblock%}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/delete_cookies.js') }}"></script>
+{% endblock %}
