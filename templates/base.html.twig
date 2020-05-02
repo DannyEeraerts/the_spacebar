@@ -13,7 +13,7 @@
     </head>
     <body>
         <header>
-            <section class = "topbar">
+            <section id ="top" class = "topbar">
                 <nav class="navbar navbar-dark d-flex justify-content-end px-5 pb-0 pt-3">
                     <a href="{{ path('app_homepage') }}" class="btn btn-dark ml-2" data-toggle="tooltip" title="home" role="button"><i class="fas fa-home"></i></a>
                     <a href="{{ path('admin_article_list') }}" class="btn btn-dark ml-2" data-toggle="tooltip" title="{% trans %}content{% endtrans %}" role="button"><i class="fas fa-newspaper"></i></a>
@@ -131,11 +131,15 @@
                 <a href="{{ path('app_cookie_policy') }}">{% trans %}Cookie policy{% endtrans %}</a>
             </div>
         </footer>
+        <div>
+            <a href="#top" id="return-to-top"><i class="arrow up"></i></a>
+        </div>
         {% block javascripts %}
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
             <script src="{{ asset("js/font_size.js") }}"></script>
+            <script src="{{ asset("js/scroll_top.js") }}"></script>
         {% endblock %}
         </body>
 </html>
