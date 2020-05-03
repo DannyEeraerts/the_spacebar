@@ -50,7 +50,7 @@ label{
   align-items: center;
   padding-top:0.1rem;
 }
-form input, textarea, .form-control {
+form input, textarea, .form-control, .custom-file-label {
   border: 2px solid black;
   border-bottom: 1.5px solid darkorange;
   border-right: 1.5px solid darkorange;

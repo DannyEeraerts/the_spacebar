@@ -5,14 +5,22 @@ namespace App\Form;
 use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\NotNull;
 
 class ArticleFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        /** @var Article|null $article */
+        $article = $options['data'] ?? null;
+        $isEdit = $article && $article->getId();
+
         $builder
             ->add('title', null, [
                 'label' => 'Title *',
@@ -43,12 +51,26 @@ class ArticleFormType extends AbstractType
                     'placeholder' => 'Select a date and time'],
                 'format' => 'Y-mm-d H:i:s',
                 'date_format' => 'Y-mm-d H:i:s',
-            ])
-            ->add('imageFileName', null,[
-                'label' => 'Image file name',
-                'attr'=> [
-                    'placeholder' => 'Image File name (.png or .jpg)'
-                ]
+            ]);
+
+        $imageConstraints = [
+                new Image([
+                    'maxSize' => '32M'
+                ])
+            ];
+
+        if (!$isEdit || !$article->getImageFilename()) {
+            $imageConstraints[] = new NotNull([
+                'message' => 'Please upload an image ❌',
+            ]);
+        }
+
+        $builder
+            ->add('imageFile', FileType::class,[
+                'mapped' => false,
+                'label' => 'Image-file',
+                'required' => false,
+                'constraints' => $imageConstraints
             ])
         ;
     }

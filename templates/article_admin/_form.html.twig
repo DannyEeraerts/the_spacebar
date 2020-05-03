@@ -18,8 +18,13 @@
             {{ form_widget(articleForm.publishedAt) }}
         </div>
         <div class="mb-4">
-            {{ form_label(articleForm.imageFileName) }}
-            {{ form_widget(articleForm.imageFileName) }}
+            {{ form_label(articleForm.imageFile) }}
+            {{ form_widget(articleForm.imageFile, {
+                attr:{
+                    placeholder: 'Select an article image'
+                }
+            })
+            }}
         </div>
 
         <button type="submit" class="btn btn-lg btn-dark btn-block mt-2" formnovalidate>{{ button_text|trans}}</button>

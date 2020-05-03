@@ -6,9 +6,12 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleFormType;
 use App\Repository\ArticleRepository;
+use App\Service\Uploaderhelper;
 use Doctrine\ORM\EntityManagerInterface;
+use Gedmo\Sluggable\Util\Urlizer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,7 +33,7 @@ class ArticleAdminController extends AbstractController
      * @throws \Exception
      */
 
-    public function new(EntityManagerInterface $em, Request $request)
+    public function new(EntityManagerInterface $em, Request $request, Uploaderhelper $uploaderhelper)
     {
         /*$article = new Article();
         $article->setTitle("Knowledge of the Solar System")
@@ -194,6 +197,13 @@ EOF);
            //$date = new \DateTime('@'.strtotime('now'));
            //$article->setPublishedAt($date);
            //$article->setImageFileName($data->getImageFileName());
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['imageFile']->getData();
+            if ($uploadedFile) {
+                $newFileName = $uploaderhelper->uploadArticleImage($uploadedFile);
+                $article->setImageFileName($newFileName);
+            }
+
            $em->persist($article);
            $em->flush();
 
@@ -226,14 +236,24 @@ EOF);
      * @IsGranted("MANAGE",subject="article" )
      */
 
-    public function edit(Article $article, Request $request, EntityManagerInterface $em)
+    public function edit(Article $article, Request $request, EntityManagerInterface $em, Uploaderhelper $uploaderhelper)
     {
         $form = $this->createForm(ArticleFormType::class, $article);
+        $originalTitle = ($article->getTitle());
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $slug = str_replace(' ','-', $form->getData()->getTitle()).'-'.rand(100,999);
-            $article->setSlug($slug);
+            $newTitle = $form->getData()->getTitle();
+            if ($originalTitle !== $newTitle){
+                $slug = str_replace(' ','-', $form->getData()->getTitle()).'-'.rand(100,999);
+                $article->setSlug($slug);}
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['imageFile']->getData();
+            // see src/Service
+            if ($uploadedFile) {
+                $newFileName = $uploaderhelper->uploadArticleImage($uploadedFile);
+                $article->setImageFileName($newFileName);
+            }
 
             $em->persist($article);
             $em->flush();
@@ -266,12 +286,5 @@ EOF);
         return $this->render('article_admin/list.html.twig', [
             'articles' => $articles,
         ]);
-    }
-
-    /**
-     * @Route("/admin/upload/test", name="upload_test")
-     */
-    public function temporaryUpLoadAction(Request $request){
-        dd($request->files->get('image'));
     }
 }

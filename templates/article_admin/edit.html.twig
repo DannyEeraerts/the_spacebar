@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Add New Article{% endblock %}
+{% block title %}Edit Article{% endblock %}
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href ="{{ asset('css/login.css') }}">
     <link rel="stylesheet" href ="{{ asset('css/form.css') }}">
+    <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css">
 {% endblock %}
 
 {% block body %}
@@ -17,15 +18,12 @@
         {{ include('article_admin/_form.html.twig',
             {button_text: 'update'})
         }}
-    </div>
 
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/hide_error_message.js') }}"></script>
-    <script type="text/javascript">
-      $(function () {
-        $('#datetimepicker').datetimepicker();
-      });
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+    <script src="{{ asset('js/datetimepicker.js') }}"></script>
+    <script src="{{ asset('js/fileinput_layout.js') }}"></script>
 {% endblock %}
