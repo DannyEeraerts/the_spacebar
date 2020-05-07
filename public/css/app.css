@@ -179,13 +179,16 @@ figcaption{
 .comment-form {
   min-width: 500px;
 }
-
-
-
 figcaption {
   position: absolute;
   bottom: 1.5rem;
   right: 1.5rem;
+  background: transparent;
+}
+.expand{
+  position: absolute;
+  top: 1.5rem;
+  right: 3rem;
   background: transparent;
 }
 

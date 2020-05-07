@@ -20,5 +20,6 @@ This value is not a valid email address. ❌: Dit is geen geldig email adres! �
 Firstname cannot contain a number ❌: Voornaam kan geen nummer bevatten ❌
 Lastname cannot contain a number ❌: Achternaam kan geen nummer bevatten ❌
 The file must be of format .jpg or .png or .jpeg ❌: Enkel volgende bestandsformaten zijn toegestaan .jpg of .png of .jpeg ❌
+FileSize must be lower than 32M ❌: Bestandsgrootte moet kleiner zijn dan 32M ❌
 This is not a valid email format: Dit is geen geldig email formaat
 Please upload an image ❌: Een afbeelding is vereist ❌

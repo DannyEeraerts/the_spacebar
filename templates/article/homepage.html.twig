@@ -62,7 +62,7 @@
 
                             <div class="col-4 text-center">
                                 <a href="{{ path('article_show', {slug: article.slug}) }}" >
-                                    <img src="{{ asset(article.imagePath) }}" class="img-fluid" alt ="planet Mercury">
+                                    <img src="{{ asset(article.imagePath)|imagine_filter('squared_thumbnail_small') }}" class="img-fluid" alt ="planet Mercury">
                                 </a>
                             </div>
                             <div class="col-8">

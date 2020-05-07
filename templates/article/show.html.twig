@@ -4,19 +4,25 @@
     Read {{ article.title }}
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href ="{{ asset('css/form.css') }}">
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="row mt-4 mb-3 d-flex align-items-center">
             <div class="col-6 col-sm-5">
                 <figure>
                     <img class="img-fluid show-article-img"
-                         src="{{ asset(article.imagePath) }}">
+                         src="{{ asset(article.imagePath)|imagine_filter('rectangled_thumbnail_medium') }}">
+                    <a href="{{ asset(article.imagePath)|imagine_filter('my_ratio_up_scale_filter') }}"><span><i class="fas fa-expand-arrows-alt expand"></i></span></a>
                     <figcaption class="ml-1">-{{ article.imageNameWithoutExtention}}-</figcaption>
                 </figure>
 
             </div>
             <div class="col-6 col-sm-7 text-center">
-                <h1 class="title mb-4">{{ article.title }}</h1>
+                <h1 class="title mb-4">{{ article.title|trans }}</h1>
                 <span class="align-left article-details"><img class="article-author-img rounded-circle"
                     src="{{ asset('images/anakin-skywalker.png') }}"> {{ article.author }}
                 </span>
@@ -41,9 +47,7 @@
                     {% endfor %}
                 </p>
             </div>
-
         </div>
-
 
         <div class="row">
             <div class="col-12">
@@ -73,37 +77,71 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <h3><i class="pr-3 fa fa-comment"></i>{%trans%}Comments{% endtrans %} ({{ article.comments|length }})</h3>
+            <div class="col-12 mb-3">
+                <h3>{%trans%}Comments{% endtrans %}<i class="pl-3 fa fa-comment"></i> ({{ article.comments|length }})</h3>
             </div>
         </div>
 
-        <div class="row mb-2">
-            <div class="col-sm-12">
-                <img class="comment-img rounded-circle"
-                     src="{{ asset('images/astronaut-profile.png') }}">
-                <div class="d-inline-block pl-3 align-top">
-                    <span class="commenter-name">Amy Oort</span>
-                    <div class="form-group">
-                        <textarea class="form-control comment-form"
-                                  id="articleText"
-                                  rows="1"></textarea>
+        {% if is_granted('ROLE_USER') == true %}
+            <div class="row mb-2">
+                <div class="col-sm-12">
+                    <img class="comment-img rounded-circle"
+                         src="{{ asset('images/astronaut-profile.png') }}">
+                    <div class="d-inline-block pl-3 align-items-center">
+                        <span class="commenter-name">{{ app.user }} {% trans %}if desired, you can add your comment to this article{% endtrans %}.</span>
                     </div>
-                    <button type="submit" class="btn btn-dark">{% trans %}Comment{% endtrans %}</button>
+                </div>
+                <div class="col-sm-12">
+                    <form method="post" novalidate autocomplete="off" class="mt-2 mb-3 py-3 px-5">
+                        <div class="form-group mb-2" id="localeLanguage" data-language-type="{{ app.request.locale }}">
+                            <div class="d-flex justify-content-between">
+                                <label for="inputContent" class="required">{% trans %}New comment{% endtrans %}</label>
+                                <span id="showErrorContent"class="invalid-feedback mb-1">
+                                    <span class="form-error-icon badge badge-danger text-uppercase">Error</span>
+                                    <span id="errorTextContent" class="form-error-message"></span>
+                                </span>
+                            </div>
+                            {% set inputContentPlaceholder = "Place a comment on this article" %}
+                            <textarea id="inputContent" name="content" class="form-control comment-form"
+                                      rows="2" placeholder= "{{inputContentPlaceholder|trans}}" required></textarea>
+                        </div>
+                        <input type="hidden" name="_csrf_token"
+                               value="{{ csrf_token('authenticate') }}"
+                        >
+                        <input type="hidden" name="author"
+                               value="{{ app.user }}"
+                        >
+                        <input type="hidden" name="article_id"
+                               value="{{ article.id }}"
+                        >
+
+                        <div class="text-right">
+                            <button id="submitButton" type="submit" class="btn btn-dark">{% trans %}Submit comment{% endtrans %}</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div>
+        {% else %}
+            <div class="row mb-2">
+                <div class="col-sm-12">
+                    <p class="bg-color p-2 text-center" >Do you also want to add comments to this article? <a href="{{ path('app_login') }}">Please sign in.</a></p>
+                </div>
+            </div>
+
+        {% endif %}
 
         {% for comment in article.comments %}
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12 mb-3">
                     <img class="comment-img rounded-circle"
                          src="{{ asset('images/anakin-skywalker.png') }}">
                     <span class="commenter-name">{{ comment.authorName }}</span>
                     <small>{{ comment.createdAt|ago }}</small>
                     <br>
                     {{ comment.content|trans }}
-                    <p><a href="#">{% trans %}Reply{% endtrans %}</a></p>
+                    {% if is_granted('ROLE_USER') == true %}
+                        <p><a href="#">{% trans %}Reply{% endtrans %}</a></p>
+                    {% endif %}
             </div>
         </div>
         {% endfor %}
@@ -114,4 +152,8 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/article_show.js') }}"></script>
+    {% if is_granted('ROLE_USER') == true %}
+        <script src="{{ asset('js/check_comment.js') }}"></script>
+        <script src="{{ asset('js/hide_error_message.js') }}"></script>
+    {% endif %}
 {% endblock %}

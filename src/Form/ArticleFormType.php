@@ -29,16 +29,16 @@ class ArticleFormType extends AbstractType
                 ]
             ])
             ->add('content', null, [
-                'label' => 'Content *',
+                'label' => 'Content (english) *',
                 'attr' => [
-                    'placeholder' => 'Content of new article',
+                    'placeholder' => 'Content of new article (english)',
                     'rows' => 4
                 ]
             ])
             ->add('contentNl', TextareaType::class, [
-                'label' => 'Translated content *',
+                'label' => 'Translated content (dutch) *',
                 'attr' => [
-                    'placeholder' => 'Translated content of new article',
+                    'placeholder' => 'Translated content of new article (dutch)',
                     'rows' => 4
                 ]
             ])
@@ -55,8 +55,15 @@ class ArticleFormType extends AbstractType
 
         $imageConstraints = [
                 new Image([
-                    'maxSize' => '32M'
-                ])
+                    'maxSize' => '32M',
+                    'mimeTypes' => [
+                        'image/jpeg',
+                        'image/png',
+                        'image/jpg',
+                    ],
+                    'mimeTypesMessage' => 'The file must be of format .jpg or .png or .jpeg ❌',
+                    'maxSizeMessage' => 'Max FileSize must be lower than 32M ❌'
+                ],)
             ];
 
         if (!$isEdit || !$article->getImageFilename()) {

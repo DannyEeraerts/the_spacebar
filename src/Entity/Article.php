@@ -269,10 +269,10 @@ class Article
         return $this;
     }
 
-    /**
-     * @Assert\Callback
-     */
-    public function validate(ExecutionContextInterface $context, $payload)
+//    /**
+//     * @Assert\Callback
+//     */
+    /*public function validate(ExecutionContextInterface $context)
     {
         if ((strpos($this->getImageFileName(), 'png') == false)
             && (strpos($this->getImageFileName(), 'jpg') == false)
@@ -283,7 +283,7 @@ class Article
                 ->atPath('imageFileName')
                 ->addViolation();
         }
-    }
+    }*/
 
 
 
