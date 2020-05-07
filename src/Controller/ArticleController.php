@@ -4,16 +4,19 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Comment;
 use App\Repository\ArticleRepository;
 use App\Service\MarkdownHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Intl\Timezones;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class ArticleController extends AbstractController
 {
@@ -55,8 +58,32 @@ class ArticleController extends AbstractController
      * )
      */
 
-    public function show($slug, /*MarkdownHelper $markdownHelper, */EntityManagerInterface $em)
+    public function show(Request $request, $slug, /*MarkdownHelper $markdownHelper, */EntityManagerInterface $em, CsrfTokenManagerInterface $csrfTokenManager)
     {
+        if ($request->isMethod('post')) {
+
+            $this->csrfTokenManager = $csrfTokenManager;
+            $author = $request->request->get('author');
+            $article_id = $request->request->get('article_id');
+            $article = $this->getDoctrine()
+                ->getRepository(Article::class)
+                ->find($article_id);
+            $content = $request->request->get('content');
+            $token= $request->request->get('_csrf_token');
+            if (!$this->isCsrfTokenValid('authenticate', $token))
+            {
+                return $this->redirectToRoute('app_error403');
+            }
+            $comment = new Comment();
+            $comment->setAuthorName($author)
+                    ->setContent(<<<EOF
+$content
+EOF
+)
+                    ->setArticle($article);
+            $em->persist($comment);
+            $em->flush();
+        }
         $repository = $em->getRepository(Article::class);
         /** @var Article $article */
         $article = $repository->findOneBy(['slug' => $slug]);

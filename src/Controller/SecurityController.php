@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\UserRegistrationFormType;
 use App\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -106,6 +107,56 @@ class SecurityController extends AbstractController
         }
         /*return $this->render('security/register.html.twig');*/
         return $this->render('security/register.html.twig',[
+            'registrationForm' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/manage_account/{id}",
+     *  defaults={"%locale%":"en"},
+     *      )
+     * @Route("/{_locale}/manage_acount/{id}",
+     *      name="app_manage_account",
+     *      requirements={
+     *         "_locale":"en|nl",
+     *     }
+     *  )
+     * @IsGranted("ROLE_USER",subject="user" )
+     */
+
+
+    public function manageAccount( Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator, User $user)
+    {
+
+        $userId = $this->getUser()->getId();
+        $urlId = intval($request->attributes->get('id'));
+
+        if ($userId !== $urlId) {
+            return $this->redirectToRoute('app_error403');
+        }
+
+        $form = $this->createForm(UserRegistrationFormType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var User $user*/
+            $user = $form->getData();
+            $user->setPassword($passwordEncoder->encodePassword($user, $form['plainPassword']->getData()));
+            if (true === $form['agreeTerms']->getData()) {
+                $user->agreeTerms();
+            }
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('success', 'Your account is updated');
+
+            return $guardHandler->authenticateUserAndHandleSuccess(
+                $user,
+                $request,
+                $formAuthenticator,
+                'main',
+                );
+        }
+        return $this->render('security/manage_account.html.twig', [
             'registrationForm' => $form->createView()
         ]);
     }

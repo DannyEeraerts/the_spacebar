@@ -60,28 +60,29 @@ class UserRegistrationFormType extends AbstractType
                 'type' => PasswordType::class,
                 'mapped' => false,
                 'first_options' => ['attr' => ['placeholder' => 'Password', 'class' => 'input-group-addon ml-auto inputPassword' ],
-                                    'label' => 'Password',
-                                    /*'help' => 'Minimum 8 and maximum 13 characters, at least one lowercase letter, one uppercase letter,
-                                     one numeric digit, and one special character, but cannot contain whitespace.',*/
+                    'label' => 'Password',
+                    /*'help' => 'Minimum 8 and maximum 13 characters, at least one lowercase letter, one uppercase letter,
+                     one numeric digit, and one special character, but cannot contain whitespace.',*/
                 ],
                 'second_options' => ['attr' => ['placeholder' => 'Repeat password', 'class' => 'input-group-addon ml-auto inputPassword' ],
-                                    'label' => 'Repeat password',
+                    'label' => 'Repeat password',
                 ],
-                'constraints' =>
-                    [new NotBlank([
+                'constraints' => [
+                    new NotBlank([
                         'message' => 'Password is required ❌'
-                        ]),
+                    ]),
                     new Length([
                         'min' => 8,
-                        'minMessage' => 'Come on, you can think of a longer password ❌'
-                        ]),
+                        'max' => 13,
+                        'minMessage' => 'Come on, you can think of a longer password ❌',
+                        'maxMessage' => 'Maximum Password length is limited to 13'
+                    ]),
                     new Regex([
-                        '/^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,13}$/',
+                        'pattern' => '/^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,13}$/',
                         'message' => 'This is not a valid Password ❌'
                     ]),
-                    ],
-                'invalid_message' => 'The password fields must match ❌',
-                ])
+                ],
+            ])
 
             ->add('agreeTerms', CheckboxType::class,[
                 'mapped' => false,

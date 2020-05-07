@@ -186,7 +186,6 @@ EOF);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
            $article = $form->getData();
            //$article = new Article;
            //$article->setTitle($data->getTitle());
