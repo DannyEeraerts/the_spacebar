@@ -7,13 +7,14 @@ The Space Bar: De Ruimte Bar
 Asteroids: Asteroïden
 Comets: Kometen
 Planets: Planeten
-Search: Zoek
-Create Post: Maak Post aan
+search: zoek
 Login: Inloggen
 Logout: UitLoggen
 Register: Registreer
 Manage: Beheer
 New article: Nieuw artikel
+in articles: in artikels
+in comments: in opmerkingen
 #footer
 Terms and Conditions: Algemene voorwaarden
 Privacy policy: Privacybeleid
@@ -80,6 +81,7 @@ Life on Planet Mercury: Leven op planeet Mercury
 The Speed Of Light Is Not About Light: De snelheid van licht gaat niet over licht
 Knowledge of the Solar System: Kennis van het zonnestelsel
 Astronomers spot never-before-seen gravitational wave source from binary white dwarf stars: Astronomen spotten een nooit eerder geziene zwaartekrachtsgolfbron van binaire witte dwergsterren
+All about Mars: Alles over Mars
 #article
 At the very beginning of our solar system, before there was an Earth, Jupiter or Pluto, a massive swirling cloud of dust and gas circled the young Sun. The dust particles in this disk collided with each other and formed into larger bits of rock. This process continued until they reached the size of boulders. Eventually this process of accretion formed the planets of our solar system.: Helemaal aan het begin van ons zonnestelsel, voordat er een aarde, Jupiter of Pluto was, cirkelde een enorme wervelende stof- en gaswolk rond de jonge zon. De stofdeeltjes in deze schijf kwamen met elkaar in botsing en vormden grotere stukjes steen. Dit proces ging door totdat ze de grootte van rotsblokken bereikten. Uiteindelijk vormde dit aanwasproces de planeten van ons zonnestelsel.
 Comments: Opmerkingen
@@ -131,6 +133,16 @@ More than 150 moons orbit worlds in our solar system. Known as natural satellite
 Any ancient life on Mercury would have faced many extinction events. Here on Earth many past life forms have been destroyed by asteroid impacts. The dinosaurs are a classic example. Images of Mercury’s surface returned by the Mariner 10 and MESSENGER spacecraft have shown that the surface has suffered many large impacts. In fact, it was heavily bombarded during the Late Heavy Bombardment that occurred about 3.9 billion years ago. Any one of those impacts could have destroyed any life on the planet. Many scientists believe that a great deal of the planet’s surface was stripped away by one impact. If the impact removed a large portion of the surface, surely it would have taken any life that existed at the time with it.: Elk vroeger leven op Mercurius zou vele uitstervingsgebeurtenissen hebben meegemaakt. Hier op aarde zijn veel vorige levensvormen vernietigd door asteroïde inslagen. De dinosauriërs zijn hiervan een klassiek voorbeeld. Afbeeldingen van het oppervlak van Mercurius, welke zijn verzonden door het Mariner 10- en MESSENGER-ruimtevaartuig, hebben aangetoond dat het oppervlak veel grote schokken heeft ondergaan. In feite werd het zwaar gebombardeerd, een bombardement dat ongeveer 3,9 miljard jaar geleden plaatsvond. Elk van die effecten had elk leven op aarde kunnen vernietigen. Veel wetenschappers geloven dat een groot deel van het oppervlak van de planeet door één inslag is weggenomen. Als de inslag een groot deel van het oppervlak had verwijderd, zal het zeker het leven hebben gekost dat er op dat moment bestond.
 To obtain an idea of the size of a light-year, take the circumference of the Earth (24,900 miles), lay it out in a straight line, multiply the length of the line by 7.5 (the corresponding distance is one light-second), then place 31.6 million similar lines end to end. The resulting distance is almost 6 trillion (6,000,000,000,000) miles!: Om een ​​idee te krijgen van de grootte van een lichtjaar, neem je de omtrek van de aarde (24.900 mijl), leg je deze uit in een rechte lijn, vermenigvuldig je de lengte van de lijn met 7,5 (de bijbehorende afstand is één lichtseconde), en plaats dan 31,6 miljoen vergelijkbare lijnen van begin tot eind. De resulterende afstand is bijna 6 biljoen (6.000.000.000.000) mijl!
 According to Einstein's general theory of relativity, as an object moves faster, its mass increases, while its length contracts. At the speed of light, such an object has an infinite mass, while its length is 0 — an impossibility. Thus, no object can reach the speed of light, the theory goes.: Volgens de algemene relativiteitstheorie van Einstein neemt de massa toe naarmate een object sneller beweegt, terwijl de lengte ervan samentrekt. Met de lichtsnelheid heeft zo'n object een oneindige massa, terwijl de lengte 0 is - een onmogelijkheid. Geen enkel object kan dus de lichtsnelheid bereiken, zo luidt de theorie.
+Mars is no place for the faint-hearted. Arid, rocky, cold and apparently lifeless, the Red Planet offers few hospitalities. Fans of extreme sports can rejoice, however, for the Red Planet will challenge even the hardiest souls among us. Home to the largest volcano in the solar system, the deepest canyon and crazy weather and temperature patterns, Mars looms as the ultimate lonely planet destination.: Mars is geen plaats voor angsthazen. Droog, rotsachtig, koud en schijnbaar levenloos, de Rode Planeet heeft weinig verblijfplaatsen. Fans van extreme sporten kunnen zich echter verheugen, want de Rode Planeet zal zelfs de hardste zielen onder ons uitdagen. De thuisbasis van de grootste vulkaan in het zonnestelsel, de diepste kloof en gekke weer- en temperatuurpatronen, Mars doemt op als de ultieme eenzame planeetbestemming.
+#search comments
+Search in comments: Zoek in opmerkingen
+Content: Inhoud
+Created: Gemaakt op
+no comments found: geen opmerkingen of auteur gevonden
+Search... in articels, title and author: Zoek... in artikels, titels en auteur
+#search articles
+no articles found: geen artikels of auteur gevonden
+Search in articles: Zoek in artikels
 #recover password
 Reset password: Reset paswoord
 Password reset instructions will be sent to the above email address.: Instructies voor paswoordreset worden verzonden naar bovenstaand adres.

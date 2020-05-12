@@ -1,19 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Manage Comments!{% endblock %}
+{% block title %}Search Comments!{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href ="{{ asset('css/form.css') }}">
+{% endblock %}
 
 {% block body %}
 
 <div class="container">
     <div class="row mt-4">
         <div class="col-12 no-space text-center">
-            <h4>You have full control over which comments appear on this site</h4>
-            <h1 class="underline_magic p-3 mb-4">Manage Comments ({{ pagination.totalItemCount }})</h1>
-            <form>
+            <h1 class="underline_magic p-3 mb-4">{% trans %}Search in comments{% endtrans %} ({{ pagination.totalItemCount }})</h1>
+            <form class="mb-3 pt-4 pb-1 px-4">
                 <div class="input-group mb-4">
                     <input type="text"
                            name="q"
-                           class="form-control"
+                           class="form-control text-color"
                            value=" {{ app.request.query.get('q') }}"
                            placeholder="Search..."
                     >
@@ -29,26 +33,26 @@
         <table class="table table-bordered table-dark table-striped">
             <thead>
             <tr>
-                <th class="text-center" scope="col">Title</th>
-                <th class="text-center" scope="col">Author</th>
-                <th class="text-center" scope="col">Content</th>
-                <th class="text-center" scope="col">Created</th>
+                <th class="text-center" scope="col">{% trans %}Title{% endtrans %}</th>
+                <th class="text-center" scope="col">{% trans %}Author{% endtrans %}</th>
+                <th class="text-center" scope="col">{% trans %}Content{% endtrans %}</th>
+                <th class="text-center" scope="col">{% trans %}Created{% endtrans %}</th>
             </tr>
             </thead>
             <tbody>
                 {% for comment in pagination %}
                 <tr>
                     <td class="col-2 text-left pr-5">
-                        <a href= "{{ path('article_show', {slug: comment.article.slug}) }}"> {{ comment.article.title }} </a>
+                        <a href= "{{ path('article_show', {slug: comment.article.slug}) }}"> {{ comment.article.title|trans}} </a>
                      </td>
                     <td class="col-2 text-left pr-5">{{ comment.authorName }}</td>
-                    <td class="col-6 text-left pr-5">{{ comment.content|slice(0,150) }} ...</td>
+                    <td class="col-6 text-left pr-5">{{ comment.content|trans|slice(0,150) }} ...</td>
                     <td class="col-6 text-center">{{ comment.createdAt|ago }}</td>
                 </tr>
                     {#if there are no results#}
                 {% else %}
                     <tr>
-                        <td colspan="12" class="text-center">no comments found</td>
+                        <td colspan="12" class="text-center">{% trans %}no comments found{% endtrans %}</td>
                     </tr>
                 {% endfor %}
             </tbody>

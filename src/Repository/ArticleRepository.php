@@ -6,6 +6,7 @@ use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Article|null find($id, $lockMode = null, $lockVersion = null)
@@ -45,6 +46,34 @@ class ArticleRepository extends ServiceEntityRepository
             ->getResult()
 
             ;
+    }
+
+    /**
+     * @param string|null $term
+     * @param string|null $l
+     * @return QueryBuilder
+     */
+    public function getArticleWithSearchQueryBuilder(?string $term, $l): QueryBuilder
+    {
+        {
+            $qb = $this->createQueryBuilder('a')
+                ->innerJoin('a.author', 'u')
+                ->addSelect('u');
+
+            if ($term) {
+                if ($l !== 'nl') {
+                    $qb->andWhere('a.content LIKE :term OR a.title LIKE :term OR CONCAT(u.firstName, \' \', u.lastName) LIKE :term')
+                        ->setParameter('term', "%" . $term . "%");
+                } else {
+                    $qb->andWhere('a.contentNl LIKE :term OR a.title LIKE :term OR CONCAT(u.firstName, \' \', u.lastName) LIKE :term')
+                        ->setParameter('term', "%" . $term . "%");
+                }
+            }
+            return $qb
+                ->orderBy('a.createdAt', 'DESC');
+            /*->getQuery()
+            ->getResult();*/
+        }
     }
 
 

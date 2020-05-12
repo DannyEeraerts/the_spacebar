@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Article;
 use App\Form\UserRegistrationFormType;
 use App\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -65,7 +66,7 @@ class SecurityController extends AbstractController
      *  )
      */
 
-    public function register(MailerInterface $mailer, Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator){
+    public function register(/*MailerInterface $mailer,*/ Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator){
 
         $form = $this->createForm(UserRegistrationFormType::class);
         $form->handleRequest($request);
@@ -89,13 +90,13 @@ class SecurityController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            $email = (new TemplatedEmail())
+            /*$email = (new TemplatedEmail())
                 ->from('danny.eeraerts@proximus')
                 ->to($user->getEmail())
                 ->subject('Welcome to the Space Bar!')
                 ->htmlTemplate("email/welcome.html.twig");
 
-            $mailer->send($email);
+            $mailer->send($email);*/
 
 
             return $guardHandler->authenticateUserAndHandleSuccess(
@@ -125,9 +126,8 @@ class SecurityController extends AbstractController
      */
 
 
-    public function manageAccount( Request $request, UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator, User $user)
+    public function manageAccount( Request $request, UserPasswordEncoderInterface $passwordEncoder, User $user, EntityManagerInterface $em/*, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator*/)
     {
-
         $userId = $this->getUser()->getId();
         $urlId = intval($request->attributes->get('id'));
 
@@ -137,8 +137,8 @@ class SecurityController extends AbstractController
 
         $form = $this->createForm(UserRegistrationFormType::class, $user);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var User $user*/
             $user = $form->getData();
             $user->setPassword($passwordEncoder->encodePassword($user, $form['plainPassword']->getData()));
             if (true === $form['agreeTerms']->getData()) {
@@ -147,15 +147,15 @@ class SecurityController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash('success', 'Your account is updated');
+           /* $this->redirectToRoute('app_logout');*/
 
-            return $guardHandler->authenticateUserAndHandleSuccess(
-                $user,
-                $request,
-                $formAuthenticator,
-                'main',
-                );
+            $this->addFlash(
+                'success',
+                'Your account has been successfully updated, please login again');
+
+            return $this->redirectToRoute('app_homepage');
         }
+
         return $this->render('security/manage_account.html.twig', [
             'registrationForm' => $form->createView()
         ]);

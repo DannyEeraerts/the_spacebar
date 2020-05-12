@@ -82,6 +82,19 @@
 
         <div class="row">
             <div class="col-12">
+                {{ form_errors(registrationForm) }}
+                {{ form_errors(registrationForm.firstName) }}
+                {{ form_errors(registrationForm.lastName) }}
+                {{ form_errors(registrationForm.email) }}
+                {{ form_errors(registrationForm.plainPassword) }}
+                {{ form_errors(registrationForm.agreeTerms) }}
+
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
                 <button class="btn btn-lg btn-dark btn-block" type="submit">
                     {% trans %}Update{% endtrans %}
                 </button>

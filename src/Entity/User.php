@@ -60,8 +60,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="author")
-     * @Assert\Length(min=8, minMessage="Password must have at least 8 characters ❌")
+     * @ORM\OneToMany(targetEntity="App\Entity\Article", mappedBy="author", fetch="EAGER")
      */
     private $articles;
 

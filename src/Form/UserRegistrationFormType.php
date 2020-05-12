@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -20,28 +21,24 @@ class UserRegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName', null,[
-                'label' => ('Firstname *'),
+            ->add('firstName', TextType::class,[
+                'label' => 'Firstname *',
+                'empty_data' => '',
                 'attr' => [
                             'placeholder' => 'Firstname (min 2 letters)'
                             ],
-                'translation_domain' => 'messages'
-                /* 'constraints' => [
-                   new Regex([
-                        '/\d/',
-                        'message' => 'Your name cannot contain a number ❌'
-                    ]),
-                ]*/
+                'translation_domain' => 'messages',
             ])
-            ->add('lastName',null,[
+            ->add('lastName',TextType::class,[
                 'label' => 'Lastname *',
+                'empty_data' => '',
                 'attr' => [
                     'placeholder' => 'Lastname (min 2 letters)'
                 ],
-                'translation_domain' => 'messages'
+                'translation_domain' => 'messages',
                 /*'constraints' => [
                     new Regex([
-                        '/\d/',
+                        'pattern' =>'/^([^0-9]*)$/',
                         'message' => 'Your name cannot contain a number ❌'
                     ]),
                 ]*/
@@ -49,6 +46,7 @@ class UserRegistrationFormType extends AbstractType
             ->add('email',EmailType ::class, [
                 'label' => 'Email *',
                 'help' => 'We never share your email',
+                'empty_data' => '',
                 'attr' => [
                     'placeholder' => 'Email'
                 ],

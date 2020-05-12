@@ -23,9 +23,10 @@ class CommentRepository extends ServiceEntityRepository
 
     /**
      * @param string|null $term
+     * @return QueryBuilder
      */
     /*public function findAllWithSearch(?string $term) : QueryBuilder*/
-    public function getWithSearchQueryBuilder(?string $term): QueryBuilder
+    public function getCommentWithSearchQueryBuilder(?string $term): QueryBuilder
     {
         $qb = $this->createQueryBuilder('c')
             ->innerJoin('c.article', 'a')
