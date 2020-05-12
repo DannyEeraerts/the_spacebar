@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller;
+namespace App\Controller\Temporary;
 
 use App\Entity\Tag;
 use Doctrine\ORM\EntityManagerInterface;

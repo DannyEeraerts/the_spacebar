@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Controller;
+namespace App\Controller\Temporary;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
