@@ -9,7 +9,8 @@ A Symfony project
 * entities and relations
 * translations
 * uploads
-* ....
+* XmlHTTPRequest
+* ...
 
 ## Used tools for the landing page
 * Twig
@@ -19,4 +20,4 @@ A Symfony project
 
 ## Note
 
-Currently I am working hard to give an overview of my portfollio. Consult this page regularly to see more.
+Still in progress
